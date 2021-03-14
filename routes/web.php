@@ -30,5 +30,6 @@ Route::delete('/areas/destroy/{idArea}', [AreasController::class, 'destroy'])->n
 
 Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
 Route::get('/empleados/create', [EmpleadosController::class, 'create'])->name('empleados.create');
+Route::post('/empleados/store', [EmpleadosController::class, 'store'])->name('empleados.store');
 Route::get('/empleados/edit', [EmpleadosController::class, 'edit'])->name('empleados.edit');
 Route::get('/empleados/destroy', [EmpleadosController::class, 'destroy'])->name('empleados.destroy');

@@ -36,6 +36,10 @@ class AreasController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'nombreArea' => 'required|max:255',
+            'fkRmple' => 'required|max:20',
+        ]);
         Areas::create($request->except(['action', '_token']));
         return redirect()->route('areas.index');
     }

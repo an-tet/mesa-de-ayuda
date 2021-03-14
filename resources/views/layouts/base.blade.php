@@ -21,7 +21,9 @@
 </head>
 
 <body class="grey darken-4">
-    @yield('content')
+    <main>
+        @yield('content')
+    </main>
 </body>
 
 </html>

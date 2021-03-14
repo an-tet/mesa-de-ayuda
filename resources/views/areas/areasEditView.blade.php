@@ -28,6 +28,9 @@
                         @enderror
                     </div>
                     <div class="center">
+                        <a href={{ route('areas.index') }} class="btn waves-effect waves-light grey darken-2">
+                            <i class="material-icons left">arrow_back</i>Volver
+                        </a>
                         <button class="btn waves-effect waves-light grey darken-2" type="submit" name="action">Modificar
                             <i class="material-icons right">send</i>
                         </button>

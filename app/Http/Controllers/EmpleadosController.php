@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Empleados;
 use Illuminate\Http\Request;
 
 class EmpleadosController extends Controller
@@ -13,7 +14,8 @@ class EmpleadosController extends Controller
      */
     public function index()
     {
-        return view('empleado.EmpleadosConsultView');
+        $empleados = Empleados::all();
+        return view('empleados.EmpleadosConsultView', compact('empleados'));
     }
 
     /**
@@ -23,7 +25,7 @@ class EmpleadosController extends Controller
      */
     public function create()
     {
-        //
+        return view('empleados.EmpleadosCreateView', ['errorMessage' => '']);
     }
 
     /**
@@ -34,7 +36,18 @@ class EmpleadosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'idEmpleado' => 'required|unique:Empleados|max:20',
+            'nombre' => 'required|max:255',
+            'telefono' => 'required|max:7|min:7',
+            'cargo' => 'required|max:255',
+            'email' => 'required|email|unique:Empleados|max:255',
+            'fkIdArea' => 'required|max:20',
+            'fkEmple' => 'required|max:20',
+        ]);
+
+        Empleados::create($request->except(['_token', 'action']));
+        return redirect()->route('empleados.index');
     }
 
     /**
