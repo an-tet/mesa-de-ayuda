@@ -36,10 +36,7 @@ class AreasController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'nombreArea' => 'required|max:255',
-            'fkRmple' => 'required|max:20',
-        ]);
+        $this->validateForm($request);
         Areas::create($request->except(['action', '_token']));
         return redirect()->route('areas.index');
     }
@@ -76,11 +73,8 @@ class AreasController extends Controller
      */
     public function update(Request $request, $idArea)
     {
-        $validated = $request->validate([
-            'nombreArea' => 'required',
-            'fkRmple' => 'required',
-        ]);
 
+        $this->validateForm($request);
         Areas::find($idArea)->update($request->except(['action', '_token']));
 
         return redirect()->route('areas.index');
@@ -96,5 +90,13 @@ class AreasController extends Controller
     {
         Areas::destroy($idArea);
         return redirect()->route('areas.index');
+    }
+
+    private function validateForm(Request $request)
+    {
+        $request->validate([
+            'nombreArea' => 'required',
+            'fkRmple' => 'required',
+        ]);
     }
 }

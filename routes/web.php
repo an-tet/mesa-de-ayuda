@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// <---------------------------- Areas routes --------------------------------------------------------->
 Route::get('/', [IndexController::class, 'index'])->name('index.index');
 
 Route::get('/areas', [AreasController::class, 'index'])->name('areas.index');
@@ -28,8 +29,13 @@ Route::put('/areas/update/{idArea}', [AreasController::class, 'update'])->name('
 
 Route::delete('/areas/destroy/{idArea}', [AreasController::class, 'destroy'])->name('areas.destroy');
 
+// <---------------------------- Empleados routes --------------------------------------------------------->
 Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
+
 Route::get('/empleados/create', [EmpleadosController::class, 'create'])->name('empleados.create');
 Route::post('/empleados/store', [EmpleadosController::class, 'store'])->name('empleados.store');
-Route::get('/empleados/edit', [EmpleadosController::class, 'edit'])->name('empleados.edit');
-Route::get('/empleados/destroy', [EmpleadosController::class, 'destroy'])->name('empleados.destroy');
+
+Route::get('/empleados/edit/{idEmpleado}', [EmpleadosController::class, 'edit'])->name('empleados.edit');
+Route::put('/empleados/update/{idEmpleado}', [EmpleadosController::class, 'update'])->name('empleados.update');
+
+Route::delete('/empleados/destroy/{idEmpleado}', [EmpleadosController::class, 'destroy'])->name('empleados.destroy');
