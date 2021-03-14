@@ -1,0 +1,16 @@
+body {
+  min-width: 100px;
+}
+
+a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.jumbotron {
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  background-color: #e9ecef;
+  border-radius: 0.3rem;
+  margin-top: 15rem;
+}
