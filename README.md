@@ -44,7 +44,7 @@ Los siguiente son los pasos necesarios para ejecutar el aplicativo web de **lara
  
  <div id="instalaciones">
 
-### Instalaciones
+### Prerequisitos
 Siga los enlaces pàra llegar a sus proveedores, enso de tener problemas al instalar se aconseja buscar en [youtube](http://www.youtube.com)
  
 1. [Xampp](https://www.apachefriends.org/es/index.html)
@@ -53,25 +53,24 @@ Siga los enlaces pàra llegar a sus proveedores, enso de tener problemas al inst
 4. [Git](https://git-scm.com) `opcional`
  
 **Notas:** 
-- En caso de usar `git` y desea hacer un clone del repositorio instale git
-- En caso de no querer instalar `xampp` debe instalar **MariaDB** o **MySQL** y **PHP** directamente de los proveedores
+- En caso de poseer conocimientos de `git` y desear hacer un clone del repositorio instale git
+- En caso de no querer instalar `xampp` debe instalar **[MySQL](https://www.mysql.com)** y **[PHP `^7.3|^8.0 `](https://www.php.net)** directamente de los proveedores
 
 <div id="instalacion">
 
 ### Instalación app
  
-1. Descargue el proyecto o haga el clone en caso de usar `Git`
-2. Abra una consola Y ejecute el siguiente comando `composer global require laravel/installer` para tener el instalador de laravel incluido en su equipo
-3. Abra el proyecto en el editor de su elección
-4. Mueva la consola que ya tiene abierta a donde tiene el proyecto
+1. Descargue el proyecto y descomprimalo o clone el repositorio en caso de poseer Git instalado
+2. Abra el proyecto en el editor de su elección
+3. Mueva la consola que ya tiene abierta a donde tiene el proyecto
     * En caso de no saber como hacerlo copie la ruta de su proyecto en el explorador de archivos y escriba en la consola `cd ruta` y presione la tecla **enter**
     * En caso de no poder moverse busque un video en [youtube](http://www.youtube.com)
  
 **Nota:** En caso de no tener PHP instalado de forma global recuerde que necesita colocar su proyectos en `C://xampp/htdocs`
  
-5. Ejecute el siguiente comando en su consola `composer install`
+4. Ejecute el siguiente comando en su consola `composer install`
     * Instala todas las dependencias de **composer**
-6. Ejecute el siguiente comando en su consola `npm i`
+5. Ejecute el siguiente comando en su consola `npm install`
     * Instala todas las dependencias de **node**
 7. Busque en su proyecto un archivo llamado `.env.example`, que esta en la ruta raiz asi `MesaAyuda/.env.example` y realice los siguientes cambios
     7.1. Retire el sufijo `.example` del nombre al archivo
@@ -87,7 +86,7 @@ Siga los enlaces pàra llegar a sus proveedores, enso de tener problemas al inst
     * Creara todas las tablas y campos en su base de datos de forma automatica
 11. Ejecute el siguiente comando en la consola `php artisan serve`
     * Abrira un servidor local en el puerto `8000`
-12. Abra en su navegador la ruta `localhost` asi `http//:localhost:8000`
+12. Acceda desde su navegador al servidor levantado ingresando a la siguiente ruta `http//:localhost:8000`
  
 Al haber seguido todos los pasos de forma correcta debería estar viendo el aplicativo en su navegador como se ve en la siguiente imagen
 
