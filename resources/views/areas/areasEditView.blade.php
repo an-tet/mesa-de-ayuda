@@ -1,5 +1,5 @@
 @extends('layouts.base')
-@section('title', 'Editar areas')
+@section('title', 'Modificar areas')
 
 @section('content')
     <div class="container">

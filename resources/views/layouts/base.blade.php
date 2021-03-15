@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    {{-- Title from all pages load here, and defoult value is Inicio --}}
     <title>@yield('title','Inicio')</title>
 
     <!--Import Google Icon Font-->
@@ -22,6 +23,7 @@
 
 <body class="grey darken-4">
     <main>
+        {{-- The content from all pages load here --}}
         @yield('content')
     </main>
 </body>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Empleados;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class EmpleadosController extends Controller
 {
@@ -50,14 +51,31 @@ class EmpleadosController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show the form for searching the specified resource.
      *
-     * @param  int  $idEmpleado
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show_resource()
     {
-        //
+        return view('empleados.EmpleadosShowFormView');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request)
+    {
+        $request->validate([
+            'idEmpleado' => 'required',
+        ]);
+        $empleado = Empleados::find($request->idEmpleado);
+        if (!$empleado) {
+            return Redirect::back()->withErrors(['notExist' => 'El id del empleado "' . $request->idEmpleado . '" no existe']);
+        }
+        return view('empleados.EmpleadosShowView', ['empleado' => $empleado]);
     }
 
     /**

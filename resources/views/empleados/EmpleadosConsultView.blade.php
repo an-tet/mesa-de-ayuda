@@ -58,6 +58,9 @@
                 <a href={{ route('index.index') }} class="btn waves-effect waves-light grey darken-2">
                     <i class="material-icons left">arrow_back</i>Volver
                 </a>
+                <a href={{ route('empleados.show_resource') }} class="btn waves-effect waves-light grey darken-2">
+                    <i class="material-icons right">search</i>Buscar
+                </a>
             </div>
         </div>
         <div class="center">

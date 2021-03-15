@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Areas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class AreasController extends Controller
 {
@@ -42,14 +43,29 @@ class AreasController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show the form for searching the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show_resource()
     {
-        //
+        return view('areas.AreasShowFormView');
+    }
+
+    /**
+     * Display the specified resource.
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request)
+    {
+        $request->validate([
+            'idArea' => 'required',
+        ]);
+        $area = Areas::find($request->idArea);
+        if (!$area) {
+            return Redirect::back()->withErrors(['notExist' => 'El id de area "' . $request->idArea . '" no existe']);
+        }
+        return view('areas.AreasShowView', ['area' => $area]);
     }
 
     /**

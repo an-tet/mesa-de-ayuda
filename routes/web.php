@@ -21,6 +21,9 @@ Route::get('/', [IndexController::class, 'index'])->name('index.index');
 
 Route::get('/areas', [AreasController::class, 'index'])->name('areas.index');
 
+Route::get('/areas/show_resource', [AreasController::class, 'show_resource'])->name('areas.show_resource');
+Route::get('/areas/show', [AreasController::class, 'show'])->name('areas.show');
+
 Route::get('/areas/create', [AreasController::class, 'create'])->name('areas.create');
 Route::post('/areas/store', [AreasController::class, 'store'])->name('areas.store');
 
@@ -31,6 +34,10 @@ Route::delete('/areas/destroy/{idArea}', [AreasController::class, 'destroy'])->n
 
 // <---------------------------- Empleados routes --------------------------------------------------------->
 Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
+
+
+Route::get('/empleados/show_resource', [EmpleadosController::class, 'show_resource'])->name('empleados.show_resource');
+Route::get('/empleados/show', [EmpleadosController::class, 'show'])->name('empleados.show');
 
 Route::get('/empleados/create', [EmpleadosController::class, 'create'])->name('empleados.create');
 Route::post('/empleados/store', [EmpleadosController::class, 'store'])->name('empleados.store');
