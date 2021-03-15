@@ -1,10 +1,24 @@
-## Documentación
+# Documentación
 ---
+## Indice
+1. [Contexto](#contexto)
+2. [Requerimientos](#requerimientos)
+    2.1. [Base de datos](#BD)
+    2.2. [Desarrollo](#desarrollo)
+3. [Manual de uso](#manual)
+    3.1. [Instalaciones]($instalaciones)
+    3.2 [Instalación app]($instalacion)
+
+<div id="contexto">
+
 ## Contexto
 En el ITM `(Instituto Tecnológico Metropolitano de Medellín)` se nos solicita en la clase electiva de PHP realizar el siguiente ejercicio.
  
+<div id="requerimientos">
  
 ## Requerimientos
+
+<div id="BD">
  
 ### Base de datos
 - Crear una base de datos llamada bdMesaAyuda
@@ -14,16 +28,22 @@ Con dos tablas:
  
 - Empleados (idEmpleado -varchar (20)-, nombre -varchar-, teléfono   -varchar-  cargo -varchar-  email -varchar- fkIdArea -entero, Fkemple varchar (20))
  
+ <div id="desarrollo">
+
 ### Desarrollo
 - Elaborar un aplicativo web en tres capas que permita guardar, consultar, modificar y borrar Areas en un formulario html
 - Que permita  guardar, consultar, modificar y borrar Empleados en otro formulario html (son dos páginas html diferentes)
  
 El programa debe iniciar por un index.html que contenga los hipervínculos a los CRUD de Areas y Empleados
  
+ <div id="manual">
+
 ## Manual de uso
  
 Los siguiente son los pasos necesarios para ejecutar el aplicativo web de **laravel**
  
+ <div id="instalaciones">
+
 ### Instalaciones
 Siga los enlaces pàra llegar a sus proveedores, enso de tener problemas al instalar se aconseja buscar en [youtube](http://www.youtube.com)
  
@@ -35,8 +55,10 @@ Siga los enlaces pàra llegar a sus proveedores, enso de tener problemas al inst
 **Notas:** 
 - En caso de usar `git` y desea hacer un clone del repositorio instale git
 - En caso de no querer instalar `xampp` debe instalar **MariaDB** o **MySQL** y **PHP** directamente de los proveedores
- 
-### Instalación
+
+<div id="instalacion">
+
+### Instalación app
  
 1. Descargue el proyecto o haga el clone en caso de usar `Git`
 2. Abra una consola Y ejecute el siguiente comando `composer global require laravel/installer` para tener el instalador de laravel incluido en su equipo
