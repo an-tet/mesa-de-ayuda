@@ -58,5 +58,7 @@ Siga los enlaces pàra llegar a sus proveedores, enso de tener problemas al inst
 10. Ejecute el siguiente comando en la consola `php artisan serve`
 11. Abra en su navegador la ruta `localhost` asi `http//:localhost:8000`
  
-Al haber seguido todos los pasos de forma correcta debería estar viendo el aplicativo en su navegador así
+Al haber seguido todos los pasos de forma correcta debería estar viendo el aplicativo en su navegador como se ve en la siguiente imagen
+
+![image](https://user-images.githubusercontent.com/51238797/111096502-abe65480-850d-11eb-9607-450fa53a8667.png)
 
