@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Areas extends Model
+class estado extends Model
 {
     use HasFactory;
 
-    protected $table = 'area';
+    protected $table = 'estado';
 
-    protected $primaryKey = 'IDAREA';
+    protected $primaryKey = 'IDESTADO';
 
     public $timestamps = false;
 
     protected $fillable = [
-        'IDAREA', 'NOMBRE', 'FKEMPLE'
+        'IDESTADO', 'NOMBRE'
     ];
 }
