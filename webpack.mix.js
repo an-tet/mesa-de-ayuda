@@ -12,5 +12,6 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/index.scss', 'public/css');
-mix.browserSync('127.0.0.1:8000');
+    .sass('resources/sass/index.scss', 'public/css')
+    .copy('resources/sql/mesa_ayuda.sql', 'public/sql/mesa_ayuda.sql')
+    .browserSync('127.0.0.1:8000');
