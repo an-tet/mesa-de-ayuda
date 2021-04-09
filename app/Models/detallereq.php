@@ -21,4 +21,20 @@ class detallereq extends Model
         'FKESTADO', 'FKEMPLE',
         'FKEMPLEASIGNADO'
     ];
+
+    public function empleado()
+    {
+    }
+
+    public function empleadoJefe()
+    {
+    }
+
+    public function requerimiento()
+    {
+    }
+
+    public function estado()
+    {
+    }
 }

@@ -6,24 +6,33 @@
         <div class="jumbotron">
             <h2 class="center-align">Modificar area</h2>
             <div class="row">
-                <form action={{ route('areas.update', $area->idArea) }} method="POST" class="col s12">
+                <form action={{ route('areas.update', $area->IDAREA) }} method="POST" class="col s12">
                     @csrf
                     @method('PUT')
                     <div class="row">
                         <div class="input-field col s12">
-                            <input type="text" class="validate" name="nombreArea" value={{ $area->nombreArea }} required>
-                            <label for="nombreArea">Nombre area</label>
+                            <input type="text" class="validate" name="IDAREA" value={{ $area->IDAREA }} required>
+                            <label for="IDAREA">IDAREA</label>
                         </div>
-                        @error('nombreArea')
+                        @error('IDAREA')
                             <small class="red-text">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input type="text" class="validate" name="fkRmple" value={{ $area->fkRmple }} required>
-                            <label for="fkRmple">fkRmple</label>
+                            <input type="text" class="validate" name="NOMBRE" value={{ $area->NOMBRE }} required>
+                            <label for="NOMBRE">Nombre area</label>
                         </div>
-                        @error('fkRmple')
+                        @error('NOMBRE')
+                            <small class="red-text">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="text" class="validate" name="FKEMPLE" value={{ $area->FKEMPLE }}>
+                            <label for="FKEMPLE">FKEMPLE</label>
+                        </div>
+                        @error('FKEMPLE')
                             <small class="red-text">{{ $message }}</small>
                         @enderror
                     </div>

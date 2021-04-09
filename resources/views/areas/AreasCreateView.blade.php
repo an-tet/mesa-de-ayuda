@@ -10,19 +10,28 @@
                     @csrf
                     <div class="row">
                         <div class="input-field col s12">
-                            <input type="text" class="validate" name="nombreArea" required>
-                            <label for="nombreArea">Nombre area</label>
+                            <input type="text" class="validate" name="IDAREA" required>
+                            <label for="IDAREA">IDAREA</label>
                         </div>
-                        @error('nombreArea')
+                        @error('IDAREA')
                             <small class="red-text">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input type="text" class="validate" name="fkRmple" required>
-                            <label for="fkRmple">fkRmple</label>
+                            <input type="text" class="validate" name="NOMBRE" required>
+                            <label for="NOMBRE">Nombre area</label>
                         </div>
-                        @error('fkRmple')
+                        @error('NOMBRE')
+                            <small class="red-text">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="text" class="validate" name="FKEMPLE">
+                            <label for="FKEMPLE">FKEMPLE</label>
+                        </div>
+                        @error('FKEMPLE')
                             <small class="red-text">{{ $message }}</small>
                         @enderror
                     </div>

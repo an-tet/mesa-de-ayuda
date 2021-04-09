@@ -18,4 +18,12 @@ class requerimiento extends Model
     protected $fillable = [
         'IDREQ', 'FKAREA'
     ];
+
+    public function detallereq()
+    {
+    }
+
+    public function area()
+    {
+    }
 }

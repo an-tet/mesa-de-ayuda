@@ -18,4 +18,12 @@ class cargo_por_empleado extends Model
     protected $fillable = [
         'FKCARGO', 'FKEMPLE', 'FECHAINI', 'FECHAFIN'
     ];
+
+    public function empleado()
+    {
+    }
+
+    public function cargo()
+    {
+    }
 }

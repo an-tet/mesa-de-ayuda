@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Empleados extends Model
+class Empleado extends Model
 {
     use HasFactory;
 
@@ -24,4 +24,25 @@ class Empleados extends Model
         'DIRECCION', 'X', 'Y',
         'fkEMPLE_JEFE', 'fkAREA'
     ];
+
+    public function area()
+    {
+        return $this->hasMany(Areas::class, 'FKEMPLE', 'IDEMPLEADO');
+    }
+
+    public function empleado()
+    {
+    }
+
+    public function empleadoJefe()
+    {
+    }
+
+    public function detalleReq()
+    {
+    }
+
+    public function cargoPorEmpleado()
+    {
+    }
 }

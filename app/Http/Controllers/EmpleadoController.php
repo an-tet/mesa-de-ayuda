@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Empleados;
+use App\Models\Empleado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
-class EmpleadosController extends Controller
+class EmpleadoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class EmpleadosController extends Controller
      */
     public function index()
     {
-        $empleados = Empleados::all();
+        $empleados = Empleado::all();
         return view('empleados.EmpleadosConsultView', compact('empleados'));
     }
 
@@ -46,7 +46,7 @@ class EmpleadosController extends Controller
             'fkIdArea' => 'required|max:20',
             'fkEmple' => 'required|max:20',
         ]);
-        Empleados::create($request->except(['_token', 'action']));
+        Empleado::create($request->except(['_token', 'action']));
         return redirect()->route('empleados.index');
     }
 
@@ -71,7 +71,7 @@ class EmpleadosController extends Controller
         $request->validate([
             'idEmpleado' => 'required',
         ]);
-        $empleado = Empleados::find($request->idEmpleado);
+        $empleado = Empleado::find($request->idEmpleado);
         if (!$empleado) {
             return Redirect::back()->withErrors(['notExist' => 'El id del empleado "' . $request->idEmpleado . '" no existe']);
         }
@@ -86,7 +86,7 @@ class EmpleadosController extends Controller
      */
     public function edit($idEmpleado)
     {
-        $empleado = Empleados::find($idEmpleado);
+        $empleado = Empleado::find($idEmpleado);
         return view('empleados.EmpleadosEditView', compact('empleado'));
     }
 
@@ -108,7 +108,7 @@ class EmpleadosController extends Controller
             'fkIdArea' => 'required|max:20',
             'fkEmple' => 'required|max:20',
         ]);
-        Empleados::find($idEmpleado)->update($request->except(['action', '_token']));
+        Empleado::find($idEmpleado)->update($request->except(['action', '_token']));
         return redirect()->route('empleados.index')->withSuccess('funciona');
     }
 
@@ -120,7 +120,7 @@ class EmpleadosController extends Controller
      */
     public function destroy($idEmpleado)
     {
-        Empleados::destroy($idEmpleado);
+        Empleado::destroy($idEmpleado);
         return redirect()->route('empleados.index');
     }
 }

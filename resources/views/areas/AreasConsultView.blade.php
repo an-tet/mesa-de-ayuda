@@ -12,23 +12,23 @@
                                 <tr>
                                     <th class="center-align" scope="col">Id area</th>
                                     <th class="center-align" scope="col">nombre</th>
-                                    <th class="center-align" scope="col">fkRmple</th>
+                                    <th class="center-align" scope="col">FKEMPLE</th>
                                     <th class="center-align" scope="col" colspan="2">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($areas as $area)
                                     <tr>
-                                        <td class="center-align" scope="row">{{ $area->idArea }}</td>
-                                        <td class="center-align">{{ $area->nombreArea }}</td>
-                                        <td class="center-align">{{ $area->fkRmple }}</td>
+                                        <td class="center-align" scope="row">{{ $area->IDAREA }}</td>
+                                        <td class="center-align">{{ $area->NOMBRE }}</td>
+                                        <td class="center-align">{{ $area->FKEMPLE }}</td>
                                         <td class="center-align">
-                                            <a href={{ route('areas.edit', $area->idArea) }}
+                                            <a href={{ route('areas.edit', $area->IDAREA) }}
                                                 class="waves-effect waves-light btn-small grey darken-2">
                                                 <i class="material-icons">create</i>
                                             </a>
                                             <form style="display: inline-block;"
-                                                action={{ route('areas.destroy', $area->idArea) }} method="POST">
+                                                action={{ route('areas.destroy', $area->IDAREA) }} method="POST">
                                                 @csrf
                                                 @method("DELETE")
                                                 <button class="waves-effect waves-light btn-small grey darken-2"

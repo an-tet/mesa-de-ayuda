@@ -18,4 +18,8 @@ class estado extends Model
     protected $fillable = [
         'IDESTADO', 'NOMBRE'
     ];
+
+    public function detallereq()
+    {
+    }
 }

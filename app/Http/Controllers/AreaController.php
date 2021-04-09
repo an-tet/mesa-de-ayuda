@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Areas;
+use App\Models\Area;
+use App\Models\Empleado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
-class AreasController extends Controller
+class AreaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,7 @@ class AreasController extends Controller
      */
     public function index()
     {
-        $areas = Areas::all();
+        $areas = Area::all();
         return view('areas.AreasConsultView', ['areas' => $areas]);
     }
 
@@ -38,7 +39,11 @@ class AreasController extends Controller
     public function store(Request $request)
     {
         $this->validateForm($request);
-        Areas::create($request->except(['action', '_token']));
+        // TODO - Optimizar validacion
+        $empleado = Empleado::find($request->FKEMPLE);
+
+        // if (!$empleado) return Redirect::back()->withErrors(['empleadoNoExiste' => 'El id del empleado "' . $request->FKEMPLE . '" no existe']);
+        Area::create($request->except(['action', '_token']));
         return redirect()->route('areas.index');
     }
 
@@ -58,25 +63,20 @@ class AreasController extends Controller
      */
     public function show(Request $request)
     {
-        $request->validate([
-            'idArea' => 'required',
-        ]);
-        $area = Areas::find($request->idArea);
-        if (!$area) {
-            return Redirect::back()->withErrors(['notExist' => 'El id de area "' . $request->idArea . '" no existe']);
-        }
+        $request->validate(['IDAREA' => 'required|exists:Area']);
+        $area = Area::find($request->IDAREA);
         return view('areas.AreasShowView', ['area' => $area]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $IDAREA
      * @return \Illuminate\Http\Response
      */
-    public function edit($idArea)
+    public function edit($IDAREA)
     {
-        $area = Areas::find($idArea);
+        $area = Area::find($IDAREA);
         return view('areas.AreasEditView', compact('area'));
     }
 
@@ -84,35 +84,35 @@ class AreasController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $IDAREA
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $idArea)
+    public function update(Request $request, $IDAREA)
     {
 
         $this->validateForm($request);
-        Areas::find($idArea)->update($request->except(['action', '_token']));
-
+        Area::find($IDAREA)->update($request->except(['action', '_token']));
         return redirect()->route('areas.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $IDAREA
      * @return \Illuminate\Http\Response
      */
-    public function destroy($idArea)
+    public function destroy($IDAREA)
     {
-        Areas::destroy($idArea);
+        Area::destroy($IDAREA);
         return redirect()->route('areas.index');
     }
 
     private function validateForm(Request $request)
     {
-        $request->validate([
-            'nombreArea' => 'required',
-            'fkRmple' => 'required',
+        return $request->validate([
+            'IDAREA' => 'required|unique:Area',
+            'NOMBRE' => 'required',
+            'FKEMPLE' => 'exists:Empleado,IDEMPLEADO',
         ]);
     }
 }

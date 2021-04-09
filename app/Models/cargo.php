@@ -18,4 +18,8 @@ class cargo extends Model
     protected $fillable = [
         'IDCARGO', 'NOMBRE'
     ];
+
+    public function cargoPorEmpleado()
+    {
+    }
 }
