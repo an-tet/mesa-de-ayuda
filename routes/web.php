@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\CargoController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,11 @@ Route::get('/', [IndexController::class, 'index'])->name('index.index');
 Route::get('/areas/show_resource', [AreaController::class, 'show_resource'])->name('areas.show_resource');
 Route::get('/areas/show', [AreaController::class, 'show'])->name('areas.show');
 Route::resource('/areas', AreaController::class)->except('show')->parameters(['areas' => 'IDAREA']);
+
+
+Route::get('/cargos/show_resource', [CargoController::class, 'show_resource'])->name('cargos.show_resource');
+Route::get('/cargos/show', [CargoController::class, 'show'])->name('cargos.show');
+Route::resource('/cargos', CargoController::class)->except('show')->parameters(['cargos' => 'IDCARGO']);
 
 // Route::get('/areas', [AreaController::class, 'index'])->name('areas.index');
 
