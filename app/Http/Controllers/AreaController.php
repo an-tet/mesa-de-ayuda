@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Area;
 use App\Models\Empleado;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -16,8 +17,12 @@ class AreaController extends Controller
      */
     public function index()
     {
-        $areas = Area::all();
-        return view('areas.AreasConsultView', ['areas' => $areas]);
+        try {
+            $areas = Area::all();
+            return view('areas.AreasConsultView', compact('areas'));
+        } catch (Exception $error) {
+            return view('errors.error', compact('error'));
+        }
     }
 
     /**
@@ -39,12 +44,15 @@ class AreaController extends Controller
     public function store(Request $request)
     {
         $this->validateForm($request);
-        // TODO - Optimizar validacion
-        $empleado = Empleado::find($request->FKEMPLE);
-
-        // if (!$empleado) return Redirect::back()->withErrors(['empleadoNoExiste' => 'El id del empleado "' . $request->FKEMPLE . '" no existe']);
-        Area::create($request->except(['action', '_token']));
-        return redirect()->route('areas.index');
+        try {
+            // TODO - Optimizar validacion
+            $empleado = Empleado::find($request->FKEMPLE);
+            if (!$empleado) return Redirect::back()->withErrors(['empleadoNoExiste' => 'El id del empleado "' . $request->FKEMPLE . '" no existe']);
+            Area::create($request->except(['action', '_token']));
+            return redirect()->route('areas.index');
+        } catch (Exception $error) {
+            return view('errors.error', compact('error'));
+        }
     }
 
     /**
@@ -64,8 +72,12 @@ class AreaController extends Controller
     public function show(Request $request)
     {
         $request->validate(['IDAREA' => 'required|exists:Area']);
-        $area = Area::find($request->IDAREA);
-        return view('areas.AreasShowView', ['area' => $area]);
+        try {
+            $area = Area::find($request->IDAREA);
+            return view('areas.AreasShowView', compact('area'));
+        } catch (Exception $error) {
+            return view('errors.error', compact('error'));
+        }
     }
 
     /**
@@ -76,8 +88,12 @@ class AreaController extends Controller
      */
     public function edit($IDAREA)
     {
-        $area = Area::find($IDAREA);
-        return view('areas.AreasEditView', compact('area'));
+        try {
+            $area = Area::find($IDAREA);
+            return view('areas.AreasEditView', compact('area'));
+        } catch (Exception $error) {
+            return view('errors.error', compact('error'));
+        }
     }
 
     /**
@@ -89,10 +105,17 @@ class AreaController extends Controller
      */
     public function update(Request $request, $IDAREA)
     {
-
         $this->validateForm($request);
-        Area::find($IDAREA)->update($request->except(['action', '_token']));
-        return redirect()->route('areas.index');
+        try {
+
+            $empleado = Empleado::find($request->FKEMPLE);
+            if (!$empleado) return Redirect::back()->withErrors(['empleadoNoExiste' => 'El id del empleado "' . $request->FKEMPLE . '" no existe']);
+            Area::find($IDAREA)->update($request->except(['action', '_token']));
+            return redirect()->route('areas.index');
+        } catch (Exception $error) {
+            return $error->getMessage();
+            return view('errors.error', compact('error'));
+        }
     }
 
     /**
@@ -103,16 +126,21 @@ class AreaController extends Controller
      */
     public function destroy($IDAREA)
     {
-        Area::destroy($IDAREA);
-        return redirect()->route('areas.index');
+        try {
+            Area::destroy($IDAREA);
+            return redirect()->route('areas.index');
+        } catch (Exception $error) {
+            if ($error->getCode() == 23000)
+                return Redirect::back()->withErrors(['errorEliminar' => 'No se puede eliminar ya que existen usuarios vinculados al area "' . Area::find($IDAREA)->NOMBRE . '"']);
+            return view('errors.error', compact('error'));
+        }
     }
 
     private function validateForm(Request $request)
     {
         return $request->validate([
-            'IDAREA' => 'required|unique:Area',
+            'IDAREA' => 'required|unique:area,IDAREA,' . $request->IDAREA . ',IDAREA',
             'NOMBRE' => 'required',
-            'FKEMPLE' => 'exists:Empleado,IDEMPLEADO',
         ]);
     }
 }

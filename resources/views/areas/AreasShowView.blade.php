@@ -9,20 +9,28 @@
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="text" class="validate black-text" name="nombreArea" value={{ $area->nombreArea }}
-                            disabled>
-                        <label for="nombreArea">Nombre area</label>
+                        <input type="text" class="validate black-text" name="IDAREA" value={{ $area->IDAREA }} disabled>
+                        <label for="IDAREA">IDAREA</label>
                     </div>
-                    @error('nombreArea')
+                    @error('IDAREA')
                         <small class="red-text">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="text" class="validate black-text" name="fkRmple" value={{ $area->fkRmple }} disabled>
-                        <label for="fkRmple">fkRmple</label>
+                        <input type="text" class="validate black-text" name="NOMBRE" value={{ $area->NOMBRE }} disabled>
+                        <label for="NOMBRE">Nombre area</label>
                     </div>
-                    @error('fkRmple')
+                    @error('NOMBRE')
+                        <small class="red-text">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="text" class="validate black-text" name="FKEMPLE" disabled value={{ $area->FKEMPLE }}>
+                        <label for="FKEMPLE">FKEMPLE</label>
+                    </div>
+                    @error('FKEMPLE')
                         <small class="red-text">{{ $message }}</small>
                     @enderror
                 </div>

@@ -16,14 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', [IndexController::class, 'index'])->name('index.index');
 // <---------------------------- Areas routes --------------------------------------------------------->
 
-Route::get('/', [IndexController::class, 'index'])->name('index.index');
-
-Route::resource('/areas', AreaController::class)->parameters(['areas' => 'IDAREA']);
 Route::get('/areas/show_resource', [AreaController::class, 'show_resource'])->name('areas.show_resource');
-// Route::group(function () {
-// });
+Route::get('/areas/show', [AreaController::class, 'show'])->name('areas.show');
+Route::resource('/areas', AreaController::class)->except('show')->parameters(['areas' => 'IDAREA']);
 
 // Route::get('/areas', [AreaController::class, 'index'])->name('areas.index');
 
@@ -41,7 +39,7 @@ Route::get('/areas/show_resource', [AreaController::class, 'show_resource'])->na
 // <---------------------------- Empleados routes --------------------------------------------------------->
 
 Route::resource('/empleados', EmpleadoController::class)->parameters(['empleados' => 'IDEMPLEADO']);
-Route::get('/empleados/show_resource', [EmpleadoController::class, 'show_resource'])->name('areas.show_resource');
+Route::get('/empleados/show_resource', [EmpleadoController::class, 'show_resource'])->name('empleados.show_resource');
 
 
 // Route::get('/empleados', [EmpleadoController::class, 'index'])->name('empleados.index');

@@ -26,6 +26,13 @@
         {{-- The content from all pages load here --}}
         @yield('content')
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems);
+        });
+
+    </script>
 </body>
 
 </html>

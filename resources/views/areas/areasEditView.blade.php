@@ -35,6 +35,9 @@
                         @error('FKEMPLE')
                             <small class="red-text">{{ $message }}</small>
                         @enderror
+                        @error('empleadoNoExiste')
+                            <small class="red-text">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="center">
                         <a href={{ route('areas.index') }} class="btn waves-effect waves-light grey darken-2">

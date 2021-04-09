@@ -45,6 +45,11 @@
                     </table>
                 </div>
             </div>
+            @error('errorEliminar')
+                <div class="alert alert-danger center" role="alert">
+                    {{ $message }}
+                </div>
+            @enderror
             <div class="center">
                 <a href={{ route('index.index') }} class="btn waves-effect waves-light grey darken-2">
                     <i class="material-icons left">arrow_back</i>Volver
