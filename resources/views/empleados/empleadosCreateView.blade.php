@@ -8,8 +8,20 @@
             <div class="row">
                 <form action={{ route('empleados.store') }} method="POST" class="col s12">
                     @csrf
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                     <div class="row">
-                        <div class="input-field col s12">
+                        <div class="input-field col s4">
+                            <input type="text" class="validate" name="IDEMPLEADO" required>
+                            <label for="IDEMPLEADO">Id Empleado</label>
+                            @error('IDEMPLEADO')
+                                <small class="red-text">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="input-field col s8">
                             <input type="text" class="validate" name="NOMBRE">
                             <label for="NOMBRE">NOMBRE</label>
                             @error('NOMBRE')
@@ -19,16 +31,14 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s4">
-                            <input type="text" class="validate" name="IDEMPLEADO" required>
-                            <label for="IDEMPLEADO">Id Empleado</label>
-                            @error('IDEMPLEADO')
-                                <small class="red-text">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="input-field col s4">
-                            <input type="number" class="validate" name="fkIdArea" required>
-                            <label for="fkIdArea">fkIdArea</label>
-                            @error('fkIdArea')
+                            <select name="fkAREA">
+                                <option value="" disabled selected>Elija su opción</option>
+                                @foreach ($areas as $area)
+                                    <option value={{ $area->IDAREA }}>{{ $area->NOMBRE }}</option>
+                                @endforeach
+                            </select>
+                            <label>Area</label>
+                            @error('fkAREA')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
                         </div>
@@ -39,9 +49,7 @@
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
+                        <div class="input-field col s4">
                             <input type="text" class="validate" name="HOJAVIDA" required>
                             <label for="HOJAVIDA">HOJAVIDA</label>
                             @error('HOJAVIDA')
@@ -96,27 +104,20 @@
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
                         </div>
-                        <div class="input-field col s6">
-                            <input type="email" class="validate" name="fkAREA" required>
-                            <label for="fkAREA">fkAREA</label>
-                            @error('fkAREA')
+                        <div class="input-field col s4">
+                            <select name="FKCARGO">
+                                <option value="" disabled selected>Elija su opción</option>
+                                @foreach ($cargos as $cargo)
+                                    <option value={{ $cargo->IDCARGO }}>{{ $cargo->NOMBRE }}</option>
+                                @endforeach
+                            </select>
+                            <label>Cargo</label>
+                            @error('FKCARGO')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
                         </div>
-                        <div class="input-field col s4">
-                            <select>
-                                <option value="" disabled selected>Elija su opción</option>
-                                <option value="1">Option 1</option>
-                            </select>
-                            <label>Cargo</label>
-                        </div>
-                        <div class="input-field col s4">
-                            <select>
-                                <option value="" disabled selected>Elija su opción</option>
-                                <option value="1">Option 1</option>
-                            </select>
-                            <label>Area</label>
-                        </div>
+
+
                     </div>
                     <div class="center">
                         <a href={{ route('empleados.index') }} class="btn waves-effect waves-light grey darken-2">

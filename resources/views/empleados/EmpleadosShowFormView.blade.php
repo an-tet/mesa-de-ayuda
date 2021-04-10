@@ -10,7 +10,7 @@
                     @csrf
                     <div class="row">
                         <div class="input-field col s12">
-                            <input type="text" class="validate" name="2" required>
+                            <input type="text" class="validate" name="IDEMPLEADO" required>
                             <label for="IDEMPLEADO">Id empleado</label>
                         </div>
                         @error('IDEMPLEADO')

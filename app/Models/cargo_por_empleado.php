@@ -14,6 +14,7 @@ class cargo_por_empleado extends Model
     protected $primaryKey = ['FKCARGO', 'FKEMPLE'];
 
     public $timestamps = false;
+    public $incrementing = false;
 
     protected $fillable = [
         'FKCARGO', 'FKEMPLE', 'FECHAINI', 'FECHAFIN'

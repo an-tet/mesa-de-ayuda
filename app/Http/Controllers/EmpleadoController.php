@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Area;
+use App\Models\cargo;
+use App\Models\cargo_por_empleado;
 use App\Models\Empleado;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -28,7 +31,8 @@ class EmpleadoController extends Controller
     public function create()
     {
         $areas = Area::all();
-        return view('empleados.EmpleadosCreateView');
+        $cargos = cargo::all();
+        return view('empleados.EmpleadosCreateView', ['areas' => $areas, 'cargos' => $cargos]);
     }
 
     /**
@@ -49,9 +53,12 @@ class EmpleadoController extends Controller
             'X' => '',
             'Y' => '',
             'fkEMPLE_JEFE' => 'max:20',
-            'fkAREA' => 'required|max:20',
+            'fkAREA' => 'required|not_in:0',
+            'FKCARGO' => 'required|not_in:0',
         ]);
         Empleado::create($request->except(['_token', 'action']));
+        $FECHAINI = Carbon::now()->format('Y-m-d');
+        cargo_por_empleado::create(['FKCARGO' => $request->FKCARGO, 'FKEMPLE' => $request->IDEMPLEADO, 'FECHAINI' => $FECHAINI]);
         return redirect()->route('empleados.index');
     }
 

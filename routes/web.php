@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 // <---------------------------- Home routes --------------------------------------------------------->
 Route::get('/', [IndexController::class, 'index'])->name('index.index');
+
 // <---------------------------- Areas routes --------------------------------------------------------->
 Route::get('/areas/show_resource', [AreaController::class, 'show_resource'])->name('areas.show_resource');
 Route::get('/areas/show', [AreaController::class, 'show'])->name('areas.show');

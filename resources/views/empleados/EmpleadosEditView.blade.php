@@ -10,16 +10,6 @@
                     @csrf
                     @method('PUT')
                     <div class="row">
-                        <div class="input-field col s4">
-                            <input type="text" class="validate" value={{ $empleado->IDEMPLEADO }} name="IDEMPLEADO"
-                                required>
-                            <label for="IDEMPLEADO">Id Empleado</label>
-                            @error('IDEMPLEADO')
-                                <small class="red-text">{{ $message }}</small>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="input-field col s12">
                             <input type="text" class="validate" name="NOMBRE" value={{ $empleado->NOMBRE }}>
                             <label for="NOMBRE">Nombre</label>
