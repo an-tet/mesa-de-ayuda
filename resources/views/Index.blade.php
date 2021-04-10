@@ -14,6 +14,9 @@
             <div class="col s12 m3 offset-m1">
                 <a class="waves-effect waves-light btn-large grey darken-2" href={{ route('cargos.index') }}>Cargos</a>
             </div>
+            <div class="col s12 m3 offset-m1">
+                <a class="waves-effect waves-light btn-large grey darken-2" href={{ route('requerimientos.index') }}>Requerimientos</a>
+            </div>
         </div>
     </div>
 @endsection
