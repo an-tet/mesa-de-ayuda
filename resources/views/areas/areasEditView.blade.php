@@ -11,15 +11,6 @@
                     @method('PUT')
                     <div class="row">
                         <div class="input-field col s12">
-                            <input type="text" class="validate" name="IDAREA" value={{ $area->IDAREA }} required>
-                            <label for="IDAREA">IDAREA</label>
-                        </div>
-                        @error('IDAREA')
-                            <small class="red-text">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
                             <input type="text" class="validate" name="NOMBRE" value={{ $area->NOMBRE }} required>
                             <label for="NOMBRE">Nombre area</label>
                         </div>

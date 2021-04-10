@@ -31,7 +31,7 @@
                             <input type="text" class="validate" name="FKEMPLE">
                             <label for="FKEMPLE">FKEMPLE</label>
                         </div>
-                        @error('FKEMPLE')
+                        @error('empleadoNoExiste')
                             <small class="red-text">{{ $message }}</small>
                         @enderror
                     </div>

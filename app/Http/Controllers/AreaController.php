@@ -43,7 +43,10 @@ class AreaController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validateForm($request);
+        $request->validate([
+            'IDAREA' => 'required|unique:area',
+            'NOMBRE' => 'required',
+        ]);
         try {
             // TODO - Optimizar validacion
             $empleado = Empleado::find($request->FKEMPLE);
@@ -105,15 +108,13 @@ class AreaController extends Controller
      */
     public function update(Request $request, $IDAREA)
     {
-        $this->validateForm($request);
+        $request->validate(['NOMBRE' => 'required']);
         try {
-
             $empleado = Empleado::find($request->FKEMPLE);
             if (!$empleado) return Redirect::back()->withErrors(['empleadoNoExiste' => 'El id del empleado "' . $request->FKEMPLE . '" no existe']);
             Area::find($IDAREA)->update($request->except(['action', '_token']));
             return redirect()->route('areas.index');
         } catch (Exception $error) {
-            return $error->getMessage();
             return view('errors.error', compact('error'));
         }
     }
@@ -134,13 +135,5 @@ class AreaController extends Controller
                 return Redirect::back()->withErrors(['errorEliminar' => 'No se puede eliminar ya que existen usuarios vinculados al area "' . Area::find($IDAREA)->NOMBRE . '"']);
             return view('errors.error', compact('error'));
         }
-    }
-
-    private function validateForm(Request $request)
-    {
-        return $request->validate([
-            'IDAREA' => 'required|unique:area,IDAREA,' . $request->IDAREA . ',IDAREA',
-            'NOMBRE' => 'required',
-        ]);
     }
 }
