@@ -4,6 +4,7 @@ use App\Http\Controllers\AreaController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\RequerimientoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,3 +35,8 @@ Route::resource('/cargos', CargoController::class)->except('show')->parameters([
 Route::get('/empleados/show', [EmpleadoController::class, 'show'])->name('empleados.show');
 Route::get('/empleados/show_resource', [EmpleadoController::class, 'show_resource'])->name('empleados.show_resource');
 Route::resource('/empleados', EmpleadoController::class)->except('show')->parameters(['empleados' => 'IDEMPLEADO']);
+
+// <---------------------------- Empleados routes --------------------------------------------------------->
+Route::get('/requerimientos/show', [RequerimientoController::class, 'show'])->name('requerimientos.show');
+Route::get('/requerimientos/show_resource', [RequerimientoController::class, 'show_resource'])->name('requerimientos.show_resource');
+Route::resource('/requerimientos', RequerimientoController::class)->except('show')->parameters(['requerimientos' => 'IDREQ']);
