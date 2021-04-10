@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Area;
 use App\Models\Empleado;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -128,7 +129,16 @@ class EmpleadoController extends Controller
      */
     public function destroy($idEmpleado)
     {
-        Empleado::destroy($idEmpleado);
-        return redirect()->route('empleados.index');
+        try {
+            $fkEMPLE_JEFE = null;
+            if (Area::where('FKEMPLE', '=', $idEmpleado)->exists()) {
+                Empleado::whereIn('fkEMPLE_JEFE', [$idEmpleado])->update(['fkEMPLE_JEFE' => $fkEMPLE_JEFE]);
+                Area::whereIn('fkEMPLE', [$idEmpleado])->update(['fkEMPLE' => $fkEMPLE_JEFE]);
+            }
+            Empleado::destroy($idEmpleado);
+            return redirect()->route('empleados.index');
+        } catch (Exception $error) {
+            return view('errors.error', compact('error'));
+        }
     }
 }
