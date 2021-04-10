@@ -8,11 +8,6 @@
             <div class="row">
                 <form action={{ route('empleados.store') }} method="POST" class="col s12">
                     @csrf
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
                     <div class="row">
                         <div class="input-field col s4">
                             <input type="text" class="validate" name="IDEMPLEADO" required>
