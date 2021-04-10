@@ -10,10 +10,10 @@
                     @csrf
                     <div class="row">
                         <div class="input-field col s12">
-                            <input type="text" class="validate" name="idEmpleado" required>
-                            <label for="idEmpleado">Id empleado</label>
+                            <input type="text" class="validate" name="2" required>
+                            <label for="IDEMPLEADO">Id empleado</label>
                         </div>
-                        @error('idEmpleado')
+                        @error('IDEMPLEADO')
                             <small class="red-text">{{ $message }}</small>
                         @enderror
                     </div>

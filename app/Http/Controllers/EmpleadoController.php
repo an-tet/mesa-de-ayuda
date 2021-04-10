@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Area;
 use App\Models\Empleado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -26,6 +27,7 @@ class EmpleadoController extends Controller
      */
     public function create()
     {
+        $areas = Area::all();
         return view('empleados.EmpleadosCreateView');
     }
 
@@ -38,13 +40,16 @@ class EmpleadoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'idEmpleado' => 'required|unique:Empleados|max:20',
-            'nombre' => 'required|max:255',
-            'telefono' => 'required|max:7|min:7',
-            'cargo' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:Empleados',
-            'fkIdArea' => 'required|max:20',
-            'fkEmple' => 'required|max:20',
+            'IDEMPLEADO' => 'required|max:20|unique:Empleado',
+            'NOMBRE' => 'required|max:255',
+            'FOTO' => '',
+            'HOJAVIDA' => '',
+            'TELEFONO' => 'required|max:7|min:7',
+            'EMAIL' => 'required|email|max:255|unique:Empleado',
+            'X' => '',
+            'Y' => '',
+            'fkEMPLE_JEFE' => 'max:20',
+            'fkAREA' => 'required|max:20',
         ]);
         Empleado::create($request->except(['_token', 'action']));
         return redirect()->route('empleados.index');
@@ -69,11 +74,11 @@ class EmpleadoController extends Controller
     public function show(Request $request)
     {
         $request->validate([
-            'idEmpleado' => 'required',
+            'IDEMPLEADO' => 'required',
         ]);
-        $empleado = Empleado::find($request->idEmpleado);
+        $empleado = Empleado::find($request->IDEMPLEADO);
         if (!$empleado) {
-            return Redirect::back()->withErrors(['notExist' => 'El id del empleado "' . $request->idEmpleado . '" no existe']);
+            return Redirect::back()->withErrors(['notExist' => 'El id del empleado "' . $request->IDEMPLEADO . '" no existe']);
         }
         return view('empleados.EmpleadosShowView', ['empleado' => $empleado]);
     }
@@ -94,21 +99,24 @@ class EmpleadoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $idEmpleado
+     * @param  int  $IDEMPLEADO
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $idEmpleado)
+    public function update(Request $request, $IDEMPLEADO)
     {
         $request->validate([
-            'idEmpleado' => 'required|max:20|unique:Empleados,idEmpleado,' . $idEmpleado . ',idEmpleado',
-            'nombre' => 'required|max:255',
-            'telefono' => 'required|max:7|min:7',
-            'cargo' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:Empleados,email,' . $idEmpleado . ',idEmpleado',
-            'fkIdArea' => 'required|max:20',
-            'fkEmple' => 'required|max:20',
+            'IDEMPLEADO' => 'required|max:20|unique:Empleado,IDEMPLEADO,' . $IDEMPLEADO . ',IDEMPLEADO',
+            'NOMBRE' => 'required|max:255',
+            'FOTO' => '',
+            'HOJAVIDA' => '',
+            'TELEFONO' => 'required|max:7|min:7',
+            'EMAIL' => 'required|email|max:255|unique:Empleado,email,' . $IDEMPLEADO . ',IDEMPLEADO',
+            'X' => '',
+            'Y' => '',
+            'fkEMPLE_JEFE' => 'max:20',
+            'fkAREA' => 'required|max:20',
         ]);
-        Empleado::find($idEmpleado)->update($request->except(['action', '_token']));
+        Empleado::find($IDEMPLEADO)->update($request->except(['action', '_token']));
         return redirect()->route('empleados.index')->withSuccess('funciona');
     }
 
