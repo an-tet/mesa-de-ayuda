@@ -75,7 +75,7 @@ Siga los enlaces pàra llegar a sus proveedores, enso de tener problemas al inst
 7. Busque en su proyecto un archivo llamado `.env.example`, que esta en la ruta raiz asi `MesaAyuda/.env.example` y realice los siguientes cambios
     7.1. Retire el sufijo `.example` del nombre al archivo
     7.2. Abra el archivo
-    7.3. Busque el campo `DB_DATABASE` y añada el valor de  `bdMesaAyuda`, debe quedar de la siguiente forma `DB_DATABASE=bdMesaAyuda`
+    7.3. Busque el campo `DB_DATABASE` y añada el valor de  `bdMesaAyuda`, debe quedar de la siguiente forma `DB_DATABASE=mesa_ayuda`
     7.4. En caso de tener un usuario diferente a `root`, modifique el siguiente campo `DB_USERNAME=root`, reemplace el usuario `root` sin espacios y seguido del signo igual
     7.5. En caso de que su base de datos necesite contraseña modifique el siguiente campo `DB_PASSWORD= `, agregue su clave sin espacios y seguido del signo igual
 8. Ejecute el siguiente comando en la consola `php artisan key:generate`
