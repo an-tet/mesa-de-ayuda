@@ -11,32 +11,28 @@
                             <thead>
                                 <tr>
                                     <th class="center-align" scope="col">Id empleado</th>
-                                    <th class="center-align" scope="col">nombre</th>
-                                    <th class="center-align" scope="col">telefono</th>
-                                    <th class="center-align" scope="col">cargo</th>
-                                    <th class="center-align" scope="col">email</th>
-                                    <th class="center-align" scope="col">fkIdArea</th>
-                                    <th class="center-align" scope="col">fkEmple</th>
+                                    <th class="center-align" scope="col">Nombre</th>
+                                    <th class="center-align" scope="col">Telefono</th>
+                                    <th class="center-align" scope="col">Email</th>
+                                    <th class="center-align" scope="col">Direccion</th>
                                     <th class="center-align" scope="col" colspan="2">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($empleados as $empleado)
                                     <tr>
-                                        <td class="center-align" scope="row">{{ $empleado->idEmpleado }}</td>
-                                        <td class="center-align">{{ $empleado->nombre }}</td>
-                                        <td class="center-align">{{ $empleado->telefono }}</td>
-                                        <td class="center-align">{{ $empleado->cargo }}</td>
-                                        <td class="center-align">{{ $empleado->email }}</td>
-                                        <td class="center-align">{{ $empleado->fkIdArea }}</td>
-                                        <td class="center-align">{{ $empleado->fkEmple }}</td>
+                                        <td class="center-align" scope="row">{{ $empleado->IDEMPLEADO }}</td>
+                                        <td class="center-align">{{ $empleado->NOMBRE }}</td>
+                                        <td class="center-align">{{ $empleado->TELEFONO }}</td>
+                                        <td class="center-align">{{ $empleado->EMAIL }}</td>
+                                        <td class="center-align">{{ $empleado->DIRECCION }}</td>
                                         <td class="center-align">
-                                            <a href={{ route('empleados.edit', $empleado->idEmpleado) }}
+                                            <a href={{ route('empleados.edit', $empleado->IDEMPLEADO) }}
                                                 class="waves-effect waves-light btn-small grey darken-2">
                                                 <i class="material-icons">create</i>
                                             </a>
                                             <form style="display: inline-block;"
-                                                action={{ route('empleados.destroy', $empleado->idEmpleado) }}
+                                                action={{ route('empleados.destroy', $empleado->IDEMPLEADO) }}
                                                 method="POST">
                                                 @csrf
                                                 @method("DELETE")

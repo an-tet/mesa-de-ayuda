@@ -8,38 +8,54 @@
             <div class="row">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="text" class="black-text" value={{ $empleado->nombre }} disabled>
-                        <label for="nombre">Nombre</label>
+                        <input type="text" class="black-text" value={{ $empleado->IDEMPLEADO }} disabled>
+                        <label for="IDEMPLEADO">IDEMPLEADO</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s4">
-                        <input type="text" class="black-text" value={{ $empleado->idEmpleado }} disabled>
-                        <label for="idEmpleado">Id Empleado</label>
+                        <input type="text" class="black-text" value={{ $empleado->NOMBRE }} disabled>
+                        <label for="NOMBRE">NOMBRE</label>
                     </div>
                     <div class="input-field col s4">
-                        <input type="number" class="black-text" value={{ $empleado->fkIdArea }} disabled>
-                        <label for="fkIdArea">fkIdArea</label>
+                        <input type="text" class="black-text" value={{ $empleado->FOTO }} disabled>
+                        <label for="FOTO">FOTO</label>
                     </div>
                     <div class="input-field col s4">
-                        <input type="text" class="black-text" value={{ $empleado->fkEmple }} disabled>
-                        <label for="fkEmple">fkEmple</label>
+                        <input type="text" class="black-text" value={{ $empleado->HOJAVIDA }} disabled>
+                        <label for="HOJAVIDA">HOJAVIDA</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="email" class="black-text" value={{ $empleado->email }} disabled>
-                        <label for="email">email</label>
+                        <input type="number" class="black-text" value={{ $empleado->TELEFONO }} disabled>
+                        <label for="TELEFONO">TELEFONO</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input type="text" class="black-text" value={{ $empleado->cargo }} disabled>
-                        <label for="cargo">cargo</label>
+                        <input type="email" class="black-text" value={{ $empleado->EMAIL }} disabled>
+                        <label for="EMAIL">EMAIL</label>
                     </div>
                     <div class="input-field col s6">
-                        <input type="number" class="black-text" value={{ $empleado->telefono }} disabled>
-                        <label for="telefono">telefono</label>
+                        <input type="text" class="black-text" value={{ $empleado->DIRECCION }} disabled>
+                        <label for="DIRECCION">DIRECCION</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input type="number" class="black-text" value={{ $empleado->X }} disabled>
+                        <label for="X">X</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input type="number" class="black-text" value={{ $empleado->Y }} disabled>
+                        <label for="Y">Y</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input type="text" class="black-text" value={{ $empleado->fkEMPLE_JEFE }} disabled>
+                        <label for="fkEMPLE_JEFE">fkEMPLE_JEFE</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input type="text" class="black-text" value={{ $empleado->fkAREA }} disabled>
+                        <label for="fkAREA">fkAREA</label>
                     </div>
                 </div>
                 <div class="center">

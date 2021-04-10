@@ -25,6 +25,8 @@ Route::get('/areas/show', [AreaController::class, 'show'])->name('areas.show');
 Route::resource('/areas', AreaController::class)->except('show')->parameters(['areas' => 'IDAREA']);
 
 
+
+// <---------------------------- Cargo routes --------------------------------------------------------->
 Route::get('/cargos/show_resource', [CargoController::class, 'show_resource'])->name('cargos.show_resource');
 Route::get('/cargos/show', [CargoController::class, 'show'])->name('cargos.show');
 Route::resource('/cargos', CargoController::class)->except('show')->parameters(['cargos' => 'IDCARGO']);
@@ -44,20 +46,6 @@ Route::resource('/cargos', CargoController::class)->except('show')->parameters([
 
 // <---------------------------- Empleados routes --------------------------------------------------------->
 
-Route::resource('/empleados', EmpleadoController::class)->parameters(['empleados' => 'IDEMPLEADO']);
+Route::get('/areas/show', [EmpleadoController::class, 'show'])->name('empleados.show');
 Route::get('/empleados/show_resource', [EmpleadoController::class, 'show_resource'])->name('empleados.show_resource');
-
-
-// Route::get('/empleados', [EmpleadoController::class, 'index'])->name('empleados.index');
-    
-
-// Route::get('/empleados/show_resource', [EmpleadoController::class, 'show_resource'])->name('empleados.show_resource');
-// Route::get('/empleados/show', [EmpleadoController::class, 'show'])->name('empleados.show');
-
-// Route::get('/empleados/create', [EmpleadoController::class, 'create'])->name('empleados.create');
-// Route::post('/empleados/store', [EmpleadoController::class, 'store'])->name('empleados.store');
-
-// Route::get('/empleados/edit/{idEmpleado}', [EmpleadoController::class, 'edit'])->name('empleados.edit');
-// Route::put('/empleados/update/{idEmpleado}', [EmpleadoController::class, 'update'])->name('empleados.update');
-
-// Route::delete('/empleados/destroy/{idEmpleado}', [EmpleadoController::class, 'destroy'])->name('empleados.destroy');
+Route::resource('/empleados', EmpleadoController::class)->except('show')->parameters(['empleados' => 'IDEMPLEADO']);
