@@ -1,5 +1,5 @@
 @extends('layouts.base')
-@section('title', 'Create requerimiento')
+@section('title', 'Crear requerimiento')
 
 @section('content')
     <div class="container">
@@ -27,7 +27,7 @@
                         @enderror
                     </div>
                     <div class="row">
-                        <select name="fkAREA">
+                        <select name="FKAREA">
                             <option value="" disabled selected>Elija el area</option>
                             @foreach ($areas as $area)
                                 <option value={{ $area->IDAREA }}>{{ $area->NOMBRE }}</option>
@@ -35,10 +35,26 @@
                         </select>
                     </div>
                     <div class="row">
-                        <select name="fkAREA">
+                        <select name="FKEMPLE">
+                            <option value="" disabled selected>Empleado que crea el requerimiento</option>
+                            @foreach ($empleados as $empleado)
+                                <option value={{ $empleado->IDEMPLEADO }}>{{ $empleado->NOMBRE }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="row">
+                        <select name="FKEMPLEASIGNADO">
                             <option value="" disabled selected>Asigne el empleado</option>
                             @foreach ($empleados as $empleado)
                                 <option value={{ $empleado->IDEMPLEADO }}>{{ $empleado->NOMBRE }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="row">
+                        <select name="IDESTADO">
+                            <option value="" disabled selected>Asigne el estado</option>
+                            @foreach ($estados as $estado)
+                                <option value={{ $estado->IDESTADO }}>{{ $estado->NOMBRE }}</option>
                             @endforeach
                         </select>
                     </div>
