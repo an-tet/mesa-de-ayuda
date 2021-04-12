@@ -31,6 +31,7 @@
                         <div class="input-field col s4">
                             <input type="text" class="datepicker" name="FECHAINI" required
                                 value={{ $empleado->FECHAINI }}>
+                            <label for="FECHAINI">FECHAINI</label>
                             @error('FECHAINI')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
@@ -108,30 +109,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        {{-- <div class="input-field col s4">
-                            <input type="number" class="validate" name="fkEMPLE_JEFE"
-                                value={{ $empleado->fkEMPLE_JEFE }}>
-                            <label for="fkEMPLE_JEFE">fkEMPLE_JEFE</label>
-                            @error('fkEMPLE_JEFE')
-                                <small class="red-text">{{ $message }}</small>
-                            @enderror
-                        </div> --}}
-                        {{ $empleado->IDEMPLEADO }}
-                        {{-- <div class="input-field col s4">
-                            <select name="fkEMPLE_JEFE">
-                                <option value="" disabled>fkEMPLE_JEFE</option>
-                                @foreach ($empleados as $empleadose)
-                                    <option value={{ $empleadose->IDEMPLEADO }} @if ($empleado->IDEMPLEADO == $empleadose->fkEMPLE_JEFE) selected='selected' @endif>
-                                        {{ $empleadose->NOMBRE }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div> --}}
                         <div class="input-field col s4">
                             <select name="FKCARGO">
                                 <option value="" disabled>Elija su opción</option>
                                 @foreach ($cargos as $cargo)
-                                    {{ $cargos[0]->IDCARGO }}
+
                                     <option value={{ $cargo->IDCARGO }} @if ($empleado->IDCARGO == $cargo->IDCARGO) selected='selected' @endif>
                                         {{ $cargo->NOMBRE }}
                                     </option>

@@ -27,6 +27,7 @@
                         </div>
                         <div class="input-field col s4">
                             <input type="text" class="datepicker" name="FECHAINI" required>
+                            <label for="FECHAINI">FECHAINI</label>
                             @error('FECHAINI')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
