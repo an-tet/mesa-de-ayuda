@@ -33,15 +33,6 @@ CREATE TABLE `area` (
   `FKEMPLE` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `area`
---
-
-INSERT INTO `area` (`IDAREA`, `NOMBRE`, `FKEMPLE`) VALUES
-('10', 'INFORMÁTICA', '4'),
-('20', 'GESTIÓN HUMANA', NULL),
-('30', 'MANTENIMIENTO', NULL),
-('40', 'CONTABILIDAD', NULL);
 
 -- --------------------------------------------------------
 
@@ -102,17 +93,6 @@ CREATE TABLE `empleado` (
   `fkEMPLE_JEFE` varchar(20) DEFAULT NULL,
   `fkAREA` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `empleado`
---
-
-INSERT INTO `empleado` (`IDEMPLEADO`, `NOMBRE`, `FOTO`, `HOJAVIDA`, `TELEFONO`, `EMAIL`, `DIRECCION`, `X`, `Y`, `fkEMPLE_JEFE`, `fkAREA`) VALUES
-('1', 'Hugo', 'C:\\xampp\\htdocs\\proyectoMesaAyuda\\vista\\fotos\\1.jpg', 'C:\\xampp\\htdocs\\proyectoMesaAyuda\\vista\\hvs\\1.pdf', '411', 'hugo@ma.com', 'Cl. 54a #30-01, Medellín, Antioquia', -75.5532407, 6.2453253, '4', '10'),
-('2', 'Paco', 'C:\\xampp\\htdocs\\proyectoMesaAyuda\\vista\\fotos\\2.jpg', 'C:\\xampp\\htdocs\\proyectoMesaAyuda\\vista\\hvs\\2.pdf', '412', 'paco@ma.com', 'Cra. 74d #732, Medellín, Antioquia', -75.5910024, 6.2736935, '4', '10'),
-('3', 'Luís', 'C:\\xampp\\htdocs\\proyectoMesaAyuda\\vista\\fotos\\3.jpg', 'C:\\xampp\\htdocs\\proyectoMesaAyuda\\vista\\hvs\\3.pdf', '413', 'luis@ma.com', 'Cra. 65 #98 A-75, Medellín, Antioquia', -75.5715315, 6.2938986, NULL, '20'),
-('4', 'Ana', 'C:\\xampp\\htdocs\\proyectoMesaAyuda\\vista\\fotos\\4.jpg', 'C:\\xampp\\htdocs\\proyectoMesaAyuda\\vista\\hvs\\4.pdf', '414', 'ana@ma.com', 'Cra. 51 #58-69, Medellín, Antioquia', -75.5683161, 6.2576409, NULL, '10'),
-('5', 'Lina', 'C:\\xampp\\htdocs\\proyectoMesaAyuda\\vista\\fotos\\5.jpg', 'C:\\xampp\\htdocs\\proyectoMesaAyuda\\vista\\hvs\\5.pdf', '415', 'lina@ma.com', 'Cl. 47A ##85 - 20, Medellín, Antioquia', -75.6026462, 6.2504554, NULL, '30');
 
 -- --------------------------------------------------------
 
