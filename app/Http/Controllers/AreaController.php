@@ -112,8 +112,11 @@ class AreaController extends Controller
     {
         $request->validate(['NOMBRE' => 'required']);
         try {
-            $empleado = Empleado::find($request->FKEMPLE);
-            if (!$empleado) return Redirect::back()->withErrors(['empleadoNoExiste' => 'El id del empleado "' . $request->FKEMPLE . '" no existe']);
+            // TODO - Optimizar validacion
+            if ($request->FKEMPLE != '') {
+                $empleado = Empleado::find($request->FKEMPLE);
+                if (!$empleado) return Redirect::back()->withErrors(['empleadoNoExiste' => 'El id del empleado "' . $request->FKEMPLE . '" no existe']);
+            }
             Area::find($IDAREA)->update($request->except(['action', '_token']));
             return redirect()->route('areas.index');
         } catch (Exception $error) {
