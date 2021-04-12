@@ -1,5 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/index.css": "/css/index.css",
-    "/sql/mesa_ayuda.sql": "/sql/mesa_ayuda.sql"
+    "/sql/mesa_ayuda.sql": "/sql/mesa_ayuda.sql",
+    "/js/empleado.js": "/js/empleado.js"
 }

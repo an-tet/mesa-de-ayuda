@@ -1,12 +1,14 @@
 @extends('layouts.base')
 @section('title', 'Crear empleados')
-
+@section('scripts')
+    <script src={{ asset('/js/empleado.js') }}></script>
+@endsection
 @section('content')
     <div class="container">
         <div class="jumbotron">
             <h2 class="center-align">Crear empleado</h2>
             <div class="row">
-                <form action={{ route('empleados.store') }} method="POST" class="col s12">
+                <form action={{ route('empleados.store') }} method="POST" class="col s12" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="input-field col s4">
@@ -16,37 +18,45 @@
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
                         </div>
-                        <div class="input-field col s8">
+                        <div class="input-field col s4">
                             <input type="text" class="validate" name="NOMBRE">
                             <label for="NOMBRE">NOMBRE</label>
                             @error('NOMBRE')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="input-field col s4">
-                            <select name="fkAREA">
-                                <option value="" disabled selected>Elija su opción</option>
-                                @foreach ($areas as $area)
-                                    <option value={{ $area->IDAREA }}>{{ $area->NOMBRE }}</option>
-                                @endforeach
-                            </select>
-                            <label>Area</label>
-                            @error('fkAREA')
+                            <input type="text" class="datepicker" name="FECHAINI" required>
+                            @error('FECHAINI')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
                         </div>
-                        <div class="input-field col s4">
-                            <input type="text" class="validate" name="FOTO" required>
-                            <label for="FOTO">FOTO</label>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <div class="file-field input-field">
+                                <div class="btn grey darken-2">
+                                    <span>Foto</span>
+                                    <input type="file" name="FOTO">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text">
+                                </div>
+                            </div>
                             @error('FOTO')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
                         </div>
-                        <div class="input-field col s4">
-                            <input type="text" class="validate" name="HOJAVIDA" required>
-                            <label for="HOJAVIDA">HOJAVIDA</label>
+                        <div class="input-field col s6">
+                            <div class="file-field input-field">
+                                <div class="btn grey darken-2">
+                                    <span>Hoja de vida</span>
+                                    <input type="file" name="HOJAVIDA" required>
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text">
+                                </div>
+                            </div>
                             @error('HOJAVIDA')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
@@ -92,12 +102,13 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s6">
-                            <input type="number" class="validate" name="fkEMPLE_JEFE" required>
-                            <label for="fkEMPLE_JEFE">fkEMPLE_JEFE</label>
-                            @error('fkEMPLE_JEFE')
-                                <small class="red-text">{{ $message }}</small>
-                            @enderror
+                        <div class="input-field col s4">
+                            <select name="fkEMPLE_JEFE">
+                                <option value="" disabled selected>fkEMPLE_JEFE</option>
+                                @foreach ($empleados as $empleado)
+                                    <option value={{ $empleado->IDEMPLEADO }}>{{ $empleado->NOMBRE }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="input-field col s4">
                             <select name="FKCARGO">
@@ -111,7 +122,18 @@
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
                         </div>
-
+                        <div class="input-field col s4">
+                            <select name="fkAREA">
+                                <option value="" disabled selected>Elija su opción</option>
+                                @foreach ($areas as $area)
+                                    <option value={{ $area->IDAREA }}>{{ $area->NOMBRE }}</option>
+                                @endforeach
+                            </select>
+                            <label>Area</label>
+                            @error('fkAREA')
+                                <small class="red-text">{{ $message }}</small>
+                            @enderror
+                        </div>
 
                     </div>
                     <div class="center">

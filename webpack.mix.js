@@ -14,4 +14,5 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/index.scss', 'public/css')
     .copy('resources/sql/mesa_ayuda.sql', 'public/sql/mesa_ayuda.sql')
+    .copy('resources/js/empleado.js', 'public/js/empleado.js')
     .browserSync('127.0.0.1:8000');

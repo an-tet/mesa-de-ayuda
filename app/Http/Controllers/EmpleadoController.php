@@ -6,10 +6,11 @@ use App\Models\Area;
 use App\Models\cargo;
 use App\Models\cargo_por_empleado;
 use App\Models\Empleado;
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class EmpleadoController extends Controller
 {
@@ -32,8 +33,9 @@ class EmpleadoController extends Controller
     public function create()
     {
         $areas = Area::all();
-        $cargos = cargo::all();
-        return view('empleados.EmpleadosCreateView', ['areas' => $areas, 'cargos' => $cargos]);
+        $cargos = Cargo::all();
+        $empleados = Empleado::all();
+        return view('empleados.EmpleadosCreateView', ['areas' => $areas, 'cargos' => $cargos, 'empleados' => $empleados]);
     }
 
     /**
@@ -53,13 +55,25 @@ class EmpleadoController extends Controller
             'EMAIL' => 'required|email|max:255|unique:Empleado',
             'X' => '',
             'Y' => '',
-            'fkEMPLE_JEFE' => 'max:20',
+            'FECHAINI' => 'required|date_format:Y-m-d',
+            'fkEMPLE_JEFE' => '',
             'fkAREA' => 'required|not_in:0',
             'FKCARGO' => 'required|not_in:0',
         ]);
-        Empleado::create($request->except(['_token', 'action']));
-        $FECHAINI = Carbon::now()->format('Y-m-d');
-        cargo_por_empleado::create(['FKCARGO' => $request->FKCARGO, 'FKEMPLE' => $request->IDEMPLEADO, 'FECHAINI' => $FECHAINI]);
+        $opcionales = [];
+        if ($request->hasFile('FOTO')) {
+            $FOTO = Storage::put('imagenes/fotos', $request->file('FOTO'));
+            $opcionales += ['FOTO' => $FOTO];
+        }
+        if ($request->hasFile('HOJAVIDA')) {
+            $HOJAVIDA = Storage::putFile('documentos/HV', $request->file('HOJAVIDA'));
+            $opcionales += ['HOJAVIDA' => $HOJAVIDA];
+        }
+        if ($request->has('fkEMPLE_JEFE'))
+            $opcionales += ['fkEMPLE_JEFE' => $request->fkEMPLE_JEFE];
+
+        Empleado::create(array_merge($request->except(['_token', 'action', 'FOTO', 'HOJAVIDA']), $opcionales));
+        cargo_por_empleado::create(['FKCARGO' => $request->FKCARGO, 'FKEMPLE' => $request->IDEMPLEADO, 'FECHAINI' => $request->FECHAINI]);
         return redirect()->route('empleados.index');
     }
 
@@ -84,11 +98,15 @@ class EmpleadoController extends Controller
         $request->validate([
             'IDEMPLEADO' => 'required',
         ]);
-        $empleado = Empleado::find($request->IDEMPLEADO);
-        if (!$empleado) {
+        $empleado = DB::table('empleado')
+            ->join('cargo_por_empleado', 'empleado.IDEMPLEADO', '=', 'cargo_por_empleado.FKEMPLE')
+            ->join('cargo', 'cargo.IDCARGO', '=', 'cargo_por_empleado.FKCARGO')
+            ->select('empleado.*', 'cargo.NOMBRE as NOMBRE_CARGO', 'cargo_por_empleado.FECHAINI')
+            ->where('IDEMPLEADO', '=', $request->IDEMPLEADO)
+            ->get();
+        if (!$empleado)
             return Redirect::back()->withErrors(['notExist' => 'El id del empleado "' . $request->IDEMPLEADO . '" no existe']);
-        }
-        return view('empleados.EmpleadosShowView', ['empleado' => $empleado]);
+        return view('empleados.EmpleadosShowView', ['empleado' => $empleado[0]]);
     }
 
     /**
@@ -99,8 +117,16 @@ class EmpleadoController extends Controller
      */
     public function edit($idEmpleado)
     {
-        $empleado = Empleado::find($idEmpleado);
-        return view('empleados.EmpleadosEditView', compact('empleado'));
+        $areas = Area::all();
+        $cargos = Cargo::all();
+        $empleados = Empleado::all();
+        $empleado = DB::table('empleado')
+            ->join('cargo_por_empleado', 'empleado.IDEMPLEADO', '=', 'cargo_por_empleado.FKEMPLE')
+            ->join('cargo', 'cargo.IDCARGO', '=', 'cargo_por_empleado.FKCARGO')
+            ->select('cargo_por_empleado.FECHAINI', 'cargo.*', 'empleado.*')
+            ->where('cargo_por_empleado.FKEMPLE', '=', $idEmpleado)
+            ->get();
+        return view('empleados.EmpleadosEditView', ['areas' => $areas, 'cargos' => $cargos, 'empleado' => $empleado[0], 'empleados' => $empleados]);
     }
 
     /**
@@ -121,10 +147,26 @@ class EmpleadoController extends Controller
             'EMAIL' => 'required|email|max:255|unique:Empleado,email,' . $IDEMPLEADO . ',IDEMPLEADO',
             'X' => '',
             'Y' => '',
+            'FECHAINI' => 'required|date_format:Y-m-d',
             'fkEMPLE_JEFE' => 'max:20',
-            'fkAREA' => 'required|max:20',
+            'fkAREA' => 'required|not_in:0',
+            'FKCARGO' => 'required|not_in:0',
         ]);
-        Empleado::find($IDEMPLEADO)->update($request->except(['action', '_token']));
+        $opcionales = [];
+
+        if ($request->hasFile('FOTO')) {
+            $FOTO = Storage::put('imagenes/fotos', $request->file('FOTO'));
+            $opcionales += ['FOTO' => $FOTO];
+        }
+        if ($request->hasFile('HOJAVIDA')) {
+            $HOJAVIDA = Storage::putFile('documentos/HV', $request->file('HOJAVIDA'));
+            $opcionales += ['HOJAVIDA' => $HOJAVIDA];
+        }
+
+        if ($request->has('fkEMPLE_JEFE'))
+            $opcionales += ['fkEMPLE_JEFE' => $request->fkEMPLE_JEFE];
+        Empleado::find($IDEMPLEADO)->update(array_merge($request->except(['_token', 'action', 'FOTO', 'HOJAVIDA']), $opcionales));
+        cargo_por_empleado::where('FKEMPLE', '=', $IDEMPLEADO)->update(['FKCARGO' => $request->FKCARGO, 'FECHAINI' => $request->FECHAINI]);
         return redirect()->route('empleados.index')->withSuccess('funciona');
     }
 
@@ -137,6 +179,7 @@ class EmpleadoController extends Controller
     public function destroy($idEmpleado)
     {
         try {
+            //No se elimina debido a que solo puede ser posible por un elimiando logico
             $fkEMPLE_JEFE = null;
             if (Area::where('FKEMPLE', '=', $idEmpleado)->exists()) {
                 Empleado::whereIn('fkEMPLE_JEFE', [$idEmpleado])->update(['fkEMPLE_JEFE' => $fkEMPLE_JEFE]);
