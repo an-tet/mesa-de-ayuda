@@ -3,8 +3,9 @@
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\EmpleadoController;
-use App\Http\Controllers\IndexController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RequerimientoController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +19,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// <---------------------------- Auth routes --------------------------------------------------------->
+Auth::routes();
+
 // <---------------------------- Home routes --------------------------------------------------------->
-Route::get('/', [IndexController::class, 'index'])->name('index.index');
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 
 // <---------------------------- Areas routes --------------------------------------------------------->
 Route::get('/areas/show_resource', [AreaController::class, 'show_resource'])->name('areas.show_resource');
