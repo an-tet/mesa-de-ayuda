@@ -1,13 +1,16 @@
 @extends('layouts.app')
-
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/auth/login.css') }}">
+@endsection
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col m8">
+    <div class="container mt-15">
+        <div class="row">
+            <div class="col s12 m10 offset-m1 l8 offset-l3">
+                {{-- Card --}}
                 <div class="card">
-                    <div class="card-title">{{ __('Login') }}</div>
-
                     <div class="card-content">
+                        <div class="card-title center">{{ __('Login') }}</div>
+                        {{-- form --}}
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
 
@@ -34,31 +37,23 @@
                                 </div>
                             </div>
 
-                            <div class=" row">
-                                <label>
-                                    <input type="checkbox" id="remember" name="remember"
-                                        {{ old('remember') ? 'checked="checked"' : '' }} />
-                                    <span for="remember">{{ __('Remember Me') }}</span>
-                                </label>
-                            </div>
-                            {{ old('remember') }}
 
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Login') }}
-                                    </button>
-
-                                    @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
-                                        </a>
-                                    @endif
-                                </div>
+                            <div class="card-action center">
+                                <button type="submit" class="btn waves-light blue-grey">
+                                    {{ __('Login') }}
+                                </button>
+                                @if (Route::has('password.request'))
+                                    <a class="btn waves-light blue-grey" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                @endif
                             </div>
+
                         </form>
+                        {{-- end form --}}
                     </div>
                 </div>
+                {{-- End card --}}
             </div>
         </div>
     </div>

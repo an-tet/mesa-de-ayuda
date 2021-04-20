@@ -31,7 +31,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href={{ asset('css/index.css') }}>
+    <link rel="stylesheet" href={{ asset('css/common.css') }}>
+    @yield('styles')
 
     @yield('scripts')
 </head>

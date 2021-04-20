@@ -1,7 +1,9 @@
 {
     "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/css/auth/login.css": "/css/auth/login.css",
+    "/css/common.css": "/css/common.css",
     "/css/index.css": "/css/index.css",
     "/sql/mesa_ayuda.sql": "/sql/mesa_ayuda.sql",
-    "/js/empleado.js": "/js/empleado.js",
-    "/css/app.css": "/css/app.css"
+    "/js/empleado.js": "/js/empleado.js"
 }

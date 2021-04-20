@@ -1,0 +1,14 @@
+.card-action {
+    .btn~a {
+        min-width: 15rem;
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .card-action {
+        .btn~a {
+            margin-top: .5rem;
+        }
+    }
+}

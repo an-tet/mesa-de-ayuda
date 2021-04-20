@@ -15,6 +15,8 @@ mix.js('resources/js/app.js', 'public/js')
     .vue()
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/index.scss', 'public/css')
+    .sass('resources/sass/common.scss', 'public/css')
+    .sass('resources/sass/auth/login.scss', 'public/css/auth')
     .copy('resources/sql/mesa_ayuda.sql', 'public/sql/mesa_ayuda.sql')
     .copy('resources/js/empleado.js', 'public/js/empleado.js')
     .browserSync('127.0.0.1:8000');
