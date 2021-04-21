@@ -42,7 +42,19 @@
 
         <nav class="blue-grey darken-3">
             <div class="nav-wrapper">
-                <a href="{{ route('home.index') }}" class="brand-logo">Logo</a>
+                <a href="{{ route('home.index') }}" class="brand-logo">
+                    <div class="cube-container">
+                        <div class="cube">
+                            <div class="cube__side" id="top"></div>
+                            <div class="cube__side" id="front"></div>
+                            <div class="cube__side" id="right"></div>
+                            <div class="cube__side" id="left"></div>
+                            <div class="cube__side" id="back"></div>
+                            <div class="cube__side" id="bottom"></div>
+                        </div>
+                    </div>
+                    Mesa de ayuda
+                </a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     @guest
@@ -61,18 +73,53 @@
 
                     @auth
                         <li>
-                            <a href="{{ route('areas.index') }}">Areas</a>
+                            <a class="dropdown-trigger" href="#!" data-target="dropdown1">
+                                Areas
+                                <i class="material-icons right">arrow_drop_down</i>
+                            </a>
+                            <!-- Dropdown Structure -->
+                            <ul id="dropdown1" class="dropdown-content">
+                                <li><a href="{{ route('areas.index') }}">Buscar</a></li>
+                                <li><a href="{{ route('areas.create') }}">Crear</a></li>
+                            </ul>
                         </li>
                         <li>
-                            <a href="{{ route('empleados.index') }}">Empleados</a>
+                            <a class="dropdown-trigger" href="#!" data-target="dropdown2">
+                                Empleados
+                                <i class="material-icons right">arrow_drop_down</i>
+                            </a>
+                            <!-- Dropdown Structure -->
+                            <ul id="dropdown2" class="dropdown-content">
+                                <li><a href="{{ route('empleados.index') }}">Buscar</a></li>
+                                <li><a href="{{ route('empleados.create') }}">Crear</a></li>
+                            </ul>
                         </li>
                         <li>
-                            <a href="{{ route('cargos.index') }}">Cargos</a>
+                            <a class="dropdown-trigger" href="#!" data-target="dropdown3">
+                                cargos
+                                <i class="material-icons right">arrow_drop_down</i>
+                            </a>
+                            <!-- Dropdown Structure -->
+                            <ul id="dropdown3" class="dropdown-content">
+                                <li><a href="{{ route('cargos.index') }}">Buscar</a></li>
+                                <li><a href="{{ route('cargos.create') }}">Crear</a></li>
+                            </ul>
                         </li>
                         <li>
+                            <a class="dropdown-trigger" href="#!" data-target="dropdown4">
+                                Requerimientos
+                                <i class="material-icons right">arrow_drop_down</i>
+                            </a>
+                            <!-- Dropdown Structure -->
+                            <ul id="dropdown4" class="dropdown-content">
+                                <li><a href="{{ route('requerimientos.index') }}">Buscar</a></li>
+                                <li><a href="{{ route('requerimientos.create') }}">Crear</a></li>
+                            </ul>
                             <a href="{{ route('requerimientos.index') }}">Requerimientos</a>
                         </li>
-
+                        <li>
+                            <a href="{{ route('home.index') }}">Inicio</a>
+                        </li>
                         <!-- Dropdown Trigger -->
                         <a class='dropdown-trigger btn blue-grey ' href='#' data-target='dropdown1'>
                             {{ Auth::user()->name }}
@@ -105,6 +152,21 @@
                         <a href="#name"><span class="black-text name">{{ Auth::user()->name }}</span></a>
                         <a href="#email"><span class="black-text email">{{ Auth::user()->email }}</span></a>
                     </div>
+                </li>
+                <li>
+                    <a href="{{ route('home.index') }}">Inicio</a>
+                </li>
+                <li>
+                    <a href="{{ route('areas.index') }}">Areas</a>
+                </li>
+                <li>
+                    <a href="{{ route('empleados.index') }}">Empleados</a>
+                </li>
+                <li>
+                    <a href="{{ route('cargos.index') }}">Cargos</a>
+                </li>
+                <li>
+                    <a href="{{ route('requerimientos.index') }}">Requerimientos</a>
                 </li>
                 <li>
                     <a href="{{ url('/') }}">

@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.app')
 @section('title', 'Crear empleados')
 @section('scripts')
     <script src={{ asset('/js/empleado.js') }}></script>

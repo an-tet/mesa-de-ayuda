@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.app')
 @section('title', 'Consultar areas')
 
 @section('content')
@@ -51,7 +51,7 @@
                 </div>
             @enderror
             <div class="center">
-                <a href={{ route('index.index') }} class="btn waves-effect waves-light grey darken-2">
+                <a href={{ route('home.index') }} class="btn waves-effect waves-light grey darken-2">
                     <i class="material-icons left">arrow_back</i>Volver
                 </a>
                 <a href={{ route('areas.show_resource') }} class="btn waves-effect waves-light grey darken-2">
