@@ -4,7 +4,7 @@
 @section('content')
     <div class="container">
         <div class="jumbotron">
-            <h2 class="center-align">Crear cargo</h2>
+            <h2 class="center-align">Crear nuevo cargo</h2>
             <div class="row">
                 <form action={{ route('cargos.store') }} method="POST" class="col s12">
                     @csrf
@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <input type="text" class="validate" name="NOMBRE" required>
-                            <label for="NOMBRE">Nombre area</label>
+                            <label for="NOMBRE">Nombre del cargo</label>
                         </div>
                         {{-- @error('NOMBRE')
                             <small class="red-text">{{ $message }}</small>

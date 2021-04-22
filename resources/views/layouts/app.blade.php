@@ -55,7 +55,7 @@
                     </div>
                     Mesa de ayuda
                 </a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">Menú</i></a>
                 <ul class="right hide-on-med-and-down">
                     @guest
                         @if (Route::has('login'))
@@ -72,6 +72,9 @@
                     @endguest
 
                     @auth
+                        <li>
+                            <a href="{{ route('home.index') }}">Inicio</a>
+                        </li>
                         <li>
                             <a class="dropdown-trigger" href="#!" data-target="dropdown1">
                                 Areas
@@ -91,12 +94,12 @@
                             <!-- Dropdown Structure -->
                             <ul id="dropdown2" class="dropdown-content">
                                 <li><a href="{{ route('empleados.index') }}">Buscar</a></li>
-                                <li><a href="{{ route('empleados.create') }}">Crear</a></li>
+                                <li><a href="{{ route('empleados.create') }}">Registrar</a></li>
                             </ul>
                         </li>
                         <li>
                             <a class="dropdown-trigger" href="#!" data-target="dropdown3">
-                                cargos
+                                Cargos
                                 <i class="material-icons right">arrow_drop_down</i>
                             </a>
                             <!-- Dropdown Structure -->
@@ -115,17 +118,13 @@
                                 <li><a href="{{ route('requerimientos.index') }}">Buscar</a></li>
                                 <li><a href="{{ route('requerimientos.create') }}">Crear</a></li>
                             </ul>
-                            <a href="{{ route('requerimientos.index') }}">Requerimientos</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('home.index') }}">Inicio</a>
                         </li>
                         <!-- Dropdown Trigger -->
-                        <a class='dropdown-trigger btn blue-grey ' href='#' data-target='dropdown1'>
+                        <a class='dropdown-trigger btn blue-grey ' href='#' data-target='dropdown'>
                             {{ Auth::user()->name }}
                         </a>
                         <!-- Dropdown Structure -->
-                        <ul id='dropdown1' class='dropdown-content'>
+                        <ul id='dropdown' class='dropdown-content'>
                             <li>
                                 <a href="{{ route('logout') }}" class="black-text"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -200,6 +199,8 @@
             var instances = M.Sidenav.init(elems);
             var elems = document.querySelectorAll('.dropdown-trigger');
             var instances = M.Dropdown.init(elems);
+            var elems = document.querySelectorAll('select');
+            M.FormSelect.init(elems);
         });
 
     </script>

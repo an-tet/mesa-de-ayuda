@@ -6,28 +6,28 @@
 @section('content')
     <div class="container">
         <div class="jumbotron">
-            <h2 class="center-align">Crear empleado</h2>
+            <h2 class="center-align">Registrar empleado</h2>
             <div class="row">
                 <form action={{ route('empleados.store') }} method="POST" class="col s12" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="input-field col s4">
                             <input type="text" class="validate" name="IDEMPLEADO" required>
-                            <label for="IDEMPLEADO">Id Empleado</label>
+                            <label for="IDEMPLEADO">Código</label>
                             @error('IDEMPLEADO')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="input-field col s4">
                             <input type="text" class="validate" name="NOMBRE">
-                            <label for="NOMBRE">NOMBRE</label>
+                            <label for="NOMBRE">Nombre</label>
                             @error('NOMBRE')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="input-field col s4">
                             <input type="text" class="datepicker" name="FECHAINI" required>
-                            <label for="FECHAINI">FECHAINI</label>
+                            <label for="FECHAINI">Fecha de inicio</label>
                             @error('FECHAINI')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
@@ -66,14 +66,14 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <input type="number" class="validate" name="TELEFONO" required>
-                            <label for="TELEFONO">TELEFONO</label>
+                            <label for="TELEFONO">Teléfono</label>
                             @error('TELEFONO')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="input-field col s6">
                             <input type="email" class="validate" name="EMAIL" required>
-                            <label for="EMAIL">EMAIL</label>
+                            <label for="EMAIL">Email</label>
                             @error('EMAIL')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
@@ -82,21 +82,21 @@
                     <div class="row">
                         <div class="input-field col s4">
                             <input type="text" class="validate" name="DIRECCION" required>
-                            <label for="DIRECCION">DIRECCION</label>
+                            <label for="DIRECCION">Dirección</label>
                             @error('DIRECCION')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="input-field col s4">
                             <input type="number" class="validate" name="Y" required>
-                            <label for="Y">Y</label>
+                            <label for="Y">Coordenada en Y</label>
                             @error('Y')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="input-field col s4">
                             <input type="number" class="validate" name="X" required>
-                            <label for="X">X</label>
+                            <label for="X">Coordenada en X</label>
                             @error('X')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
@@ -104,16 +104,8 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s4">
-                            <select name="fkEMPLE_JEFE">
-                                <option value="" disabled selected>fkEMPLE_JEFE</option>
-                                @foreach ($empleados as $empleado)
-                                    <option value={{ $empleado->IDEMPLEADO }}>{{ $empleado->NOMBRE }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="input-field col s4">
                             <select name="FKCARGO">
-                                <option value="" disabled selected>Elija su opción</option>
+                                <option value="" disabled selected>Elija el cargo</option>
                                 @foreach ($cargos as $cargo)
                                     <option value={{ $cargo->IDCARGO }}>{{ $cargo->NOMBRE }}</option>
                                 @endforeach
@@ -125,7 +117,7 @@
                         </div>
                         <div class="input-field col s4">
                             <select name="fkAREA">
-                                <option value="" disabled selected>Elija su opción</option>
+                                <option value="" disabled selected>Elija el area</option>
                                 @foreach ($areas as $area)
                                     <option value={{ $area->IDAREA }}>{{ $area->NOMBRE }}</option>
                                 @endforeach

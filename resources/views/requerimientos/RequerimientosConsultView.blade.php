@@ -10,7 +10,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="center-align" scope="col">Id Detalle del requerimiento</th>
+                                    <th class="center-align" scope="col">Id Detalle</th>
                                     <th class="center-align" scope="col">Fecha de creación</th>
                                     <th class="center-align" scope="col">Observación</th>
                                     <th class="center-align" scope="col">Area</th>

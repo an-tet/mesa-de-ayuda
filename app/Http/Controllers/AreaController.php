@@ -32,7 +32,8 @@ class AreaController extends Controller
      */
     public function create()
     {
-        return view('areas.AreasCreateView');
+        $empleado = Empleado::all();
+        return view('areas.AreasCreateView', ['empleados' => $empleado]);
     }
 
     /**

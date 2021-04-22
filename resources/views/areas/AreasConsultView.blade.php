@@ -10,9 +10,9 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="center-align" scope="col">Id area</th>
-                                    <th class="center-align" scope="col">nombre</th>
-                                    <th class="center-align" scope="col">FKEMPLE</th>
+                                    <th class="center-align" scope="col">Código</th>
+                                    <th class="center-align" scope="col">Nombre</th>
+                                    <th class="center-align" scope="col">Jefe de area</th>
                                     <th class="center-align" scope="col" colspan="2">Acciones</th>
                                 </tr>
                             </thead>
