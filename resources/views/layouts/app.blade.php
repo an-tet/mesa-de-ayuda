@@ -147,7 +147,7 @@
                         <div class="background">
                             <img src="">
                         </div>
-                        <a href="#user"><img class="circle" src=""></a>
+                        <a href="#user"><img class="circle" src="{{ asset('/img/no_file.png') }}"></a>
                         <a href="#name"><span class="black-text name">{{ Auth::user()->name }}</span></a>
                         <a href="#email"><span class="black-text email">{{ Auth::user()->email }}</span></a>
                     </div>
@@ -156,16 +156,48 @@
                     <a href="{{ route('home.index') }}">Inicio</a>
                 </li>
                 <li>
-                    <a href="{{ route('areas.index') }}">Areas</a>
+                    <a class="dropdown-trigger" href="#!" data-target="dropdown1">
+                        Areas
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                    <!-- Dropdown Structure -->
+                    <ul id="dropdown1side" class="dropdown-content">
+                        <li><a href="{{ route('areas.index') }}">Consultar</a></li>
+                        <li><a href="{{ route('areas.create') }}">Crear</a></li>
+                    </ul>
                 </li>
                 <li>
-                    <a href="{{ route('empleados.index') }}">Empleados</a>
+                    <a class="dropdown-trigger" href="#!" data-target="dropdown2side">
+                        Empleados
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                    <!-- Dropdown Structure -->
+                    <ul id="dropdown2side" class="dropdown-content">
+                        <li><a href="{{ route('empleados.index') }}">Consultar</a></li>
+                        <li><a href="{{ route('empleados.create') }}">Registrar</a></li>
+                    </ul>
                 </li>
                 <li>
-                    <a href="{{ route('cargos.index') }}">Cargos</a>
+                    <a class="dropdown-trigger" href="#!" data-target="dropdown3side">
+                        Cargos
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                    <!-- Dropdown Structure -->
+                    <ul id="dropdown3side" class="dropdown-content">
+                        <li><a href="{{ route('cargos.index') }}">Consultar</a></li>
+                        <li><a href="{{ route('cargos.create') }}">Crear</a></li>
+                    </ul>
                 </li>
                 <li>
-                    <a href="{{ route('requerimientos.index') }}">Requerimientos</a>
+                    <a class="dropdown-trigger" href="#!" data-target="dropdown4side">
+                        Requerimientos
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                    <!-- Dropdown Structure -->
+                    <ul id="dropdown4side" class="dropdown-content">
+                        <li><a href="{{ route('requerimientos.index') }}">Consultar</a></li>
+                        <li><a href="{{ route('requerimientos.create') }}">Crear</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="{{ url('/') }}">
