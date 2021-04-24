@@ -11,11 +11,17 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <input type="number" class="validate" name="IDCARGO" required>
-                            <label for="IDCARGO">Código del cargo</label>
+                            <label for="IDCARGO">Código del cargo *</label>
                         </div>
                         @error('IDCARGO')
                             <small class="red-text">{{ $message }}</small>
                         @enderror
+                        <small class="blue-grey-text right hide-on-med-and-down">Los campos que contengan un <span
+                                class="bold">*</span> son
+                            obligatorios</small>
+                        <small class="blue-grey-text left hide-on-large-only">Los campos que contengan un <span
+                                class="bold">*</span> son
+                            obligatorios</small>
                     </div>
                     <div class="center">
                         <a href={{ route('cargos.index') }} class="btn waves-effect waves-light grey darken-2">

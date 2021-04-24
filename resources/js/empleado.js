@@ -40,24 +40,25 @@ window.onload = () => {
     let fotoPreview = document.getElementById("foto-preview");
 
     async function loadPhoto(event) {
-        fotoPreview.src = await readURL(event.target.files[0]);
+        if (event.target.files.length == 0) {
+            fotoPreview.innerHTML = "";
+        } else {
+            img = URL.createObjectURL(event.target.files[0]);
+            fotoPreview.innerHTML = `<img id="foto-preview" class="materialboxed img-thumbnail responsive-img-100 ml-3" 
+            src="${img}">`;
+        }
     }
     foto.addEventListener("change", loadPhoto, false);
 
-    // let hv = document.getElementById("hv");
-    // let hvPreview = document.getElementById("hv-preview");
-
-    // function loadHV(event) {
-    //     console.log(event.target.files);
-    // }
-    // hv.addEventListener("change", loadHV, false);
-
-    const readURL = file => {
-        return new Promise((res, rej) => {
-            const reader = new FileReader();
-            reader.onload = e => res(e.target.result);
-            reader.onerror = e => rej(e);
-            reader.readAsDataURL(file);
-        });
-    };
+    let hv = document.getElementById("hv");
+    let hvPreview = document.getElementById("hv-preview");
+    async function loadHV(event) {
+        if (event.target.files.length == 0) {
+            hvPreview.innerHTML = "";
+        } else {
+            pdf = URL.createObjectURL(event.target.files[0]);
+            hvPreview.innerHTML = `<iframe id="hv-preview" class="materialboxed img-thumbnail responsive-img-100 ml-8" type="pdf"  src="${pdf}">`;
+        }
+    }
+    hv.addEventListener("change", loadHV, false);
 };

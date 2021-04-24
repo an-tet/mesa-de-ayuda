@@ -44,9 +44,9 @@ class RequerimientoController extends Controller
     public function create()
     {
         $areas = Area::all();
-        $empleado = Empleado::all();
-        $estado = Estado::all();
-        return view('requerimientos.RequerimientosCreateView', ['areas' => $areas, 'empleados' => $empleado, 'estados' => $estado]);
+        $empleados = Empleado::all();
+        $estados = Estado::all();
+        return view('requerimientos.RequerimientosCreateView', ['areas' => $areas, 'empleados' => $empleados, 'estados' => $estados]);
     }
 
     /**
@@ -95,9 +95,17 @@ class RequerimientoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($IDREQ)
     {
-        //
+        $requerimiento = DB::table('requerimiento')
+            ->join('detallereq', 'requerimiento.IDREQ', '=', 'detallereq.FKREQ')
+            ->select('requerimiento.*', 'detallereq.*')
+            ->where('IDREQ', '=', $IDREQ)
+            ->get();
+        $areas = Area::all();
+        $estados = Estado::all();
+        $empleados = Empleado::all();
+        return view('requerimientos.RequerimientosEditView', ['requerimiento' => $requerimiento[0], 'areas' => $areas, 'empleados' => $empleados, 'estados' => $estados]);
     }
 
     /**
@@ -107,9 +115,16 @@ class RequerimientoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $FKREQ)
     {
-        //
+        $request->validate([
+            'FKESTADO' => 'required|not_in:0'
+        ]);
+
+        DB::table('detallereq')
+            ->where('FKREQ', '=', $FKREQ)
+            ->update(['FKESTADO' => $request->FKESTADO]);
+        return redirect()->route('requerimientos.index');
     }
 
     /**

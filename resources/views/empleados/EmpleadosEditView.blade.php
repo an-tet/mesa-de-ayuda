@@ -14,59 +14,58 @@
                     @method('PUT')
                     <div class="row">
                         <div class="input-field col s6">
-                            <input type="text" class="validate" name="NOMBRE" value={{ $empleado->NOMBRE }}>
+                            <input type="text" class="validate" name="NOMBRE" value="{{ $empleado->NOMBRE }}">
                             <label for="NOMBRE">Nombre *</label>
                             @error('NOMBRE')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="input-field col s6">
-                            <input type="text" class="datepicker" name="FECHAINI" required
-                                value={{ $empleado->FECHAINI }}>
+                            <input type="text" class="datepicker validate" name="FECHAINI" required
+                                value="{{ $empleado->FECHAINI }}">
                             <label for="FECHAINI">Fecha de inicio *</label>
                             @error('FECHAINI')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <div class="file-field input-field">
+                    <div class="row mb-0">
+                        <div class="input-field col s12 m6">
+                            <div class="file-field">
                                 <div class="btn grey darken-2">
                                     <span>Foto</span>
                                     <input type="file" id="foto" name="FOTO">
                                 </div>
                                 <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text" value={{ $empleado->FOTO }}>
+                                    <input class="file-path validate" type="text" value="{{ $empleado->FOTO }}">
+                                </div>
+                                @error('FOTO')
+                                    <small class="red-text">{{ $message }}</small>
+                                @enderror
+                                <div id="foto-preview">
+
                                 </div>
                             </div>
-                            @error('FOTO')
-                                <small class="red-text">{{ $message }}</small>
-                            @enderror
                         </div>
-                        <div class="input-field col s6">
-                            <div class="file-field input-field">
+                        <div class="input-field col s12 m6">
+                            <div class="file-field">
                                 <div class="btn grey darken-2">
                                     <span>Hoja de vida</span>
                                     <input type="file" id="hv" name="HOJAVIDA">
                                 </div>
                                 <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text" value={{ $empleado->HOJAVIDA }}>
+                                    <input class="file-path validate" type="text" value="{{ $empleado->HOJAVIDA }}">
+                                </div>
+                                @error('HOJAVIDA')
+                                    <small class="red-text">{{ $message }}</small>
+                                @enderror
+                                <div id="hv-preview">
                                 </div>
                             </div>
-                            @error('HOJAVIDA')
-                                <small class="red-text">{{ $message }}</small>
-                            @enderror
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col s4 offset-s1">
-                            <img id="foto-preview" class="materialboxed responsive-img" width="300"
-                                src="{{ asset('img/no_file.png') }}">
-                        </div>
-                        <div class="col s4 offset-s2">
-                            {{-- <img id="hv-preview" class="materialboxed" width="300" src="{{ asset('img/no_file.png') }}"> --}}
-                        </div>
+
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
@@ -78,7 +77,7 @@
                             @enderror
                         </div>
                         <div class="input-field col s6">
-                            <input type="email" class="validate" name="EMAIL" required value={{ $empleado->EMAIL }}>
+                            <input type="email" class="validate" name="EMAIL" required value="{{ $empleado->EMAIL }}">
                             <label for="EMAIL">Correo electrónico *</label>
                             @error('EMAIL')
                                 <small class="red-text">{{ $message }}</small>
@@ -95,14 +94,16 @@
                             @enderror
                         </div>
                         <div class="input-field col s4">
-                            <input type="number" class="validate" name="Y" required value={{ $empleado->Y }}>
+                            <input type="number" class="validate" name="Y" min="-90" max="90" required
+                                value="{{ $empleado->Y }}">
                             <label for="Y">Coordenada Y</label>
                             @error('Y')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="input-field col s4">
-                            <input type="number" class="validate" name="X" required value={{ $empleado->X }}>
+                            <input type="number" class="validate" name="X" min="-180" max="180" required
+                                value="{{ $empleado->X }}">
                             <label for="X">Coordenada X</label>
                             @error('X')
                                 <small class="red-text">{{ $message }}</small>
@@ -114,7 +115,7 @@
                             <select name="FKCARGO">
                                 <option value="" disabled>Elija su opción</option>
                                 @foreach ($cargos as $cargo)
-                                    <option value={{ $cargo->IDCARGO }} @if ($empleado->IDCARGO == $cargo->IDCARGO) selected='selected' @endif>{{ $cargo->NOMBRE }}
+                                    <option value="{{ $cargo->IDCARGO }}" @if ($empleado->IDCARGO == $cargo->IDCARGO) selected='selected' @endif>{{ $cargo->NOMBRE }}
                                     </option>
                                 @endforeach
                             </select>
@@ -127,7 +128,7 @@
                             <select name="fkAREA">
                                 <option value="" disabled>Elija su opción</option>
                                 @foreach ($areas as $area)
-                                    <option value={{ $area->IDAREA }} @if ($area->IDAREA == $empleado->fkAREA) selected='selected' @endif> {{ $area->NOMBRE }}
+                                    <option value="{{ $area->IDAREA }}" @if ($area->IDAREA == $empleado->fkAREA) selected='selected' @endif> {{ $area->NOMBRE }}
                                     </option>
                                 @endforeach
                             </select>

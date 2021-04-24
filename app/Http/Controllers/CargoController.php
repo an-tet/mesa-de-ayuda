@@ -42,11 +42,13 @@ class CargoController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'NOMBRE' => 'required'
+        ]);
         try {
             Cargo::create($request->except(['action', '_token']));
             return redirect()->route('cargos.index');
         } catch (Exception $error) {
-            return $error;
             return view('errors.error', compact('error'));
         }
     }
@@ -70,7 +72,7 @@ class CargoController extends Controller
      */
     public function show(Request $request)
     {
-        $request->validate(["IDCARGO" => "exists:Cargo"]);
+        $request->validate(["IDCARGO" => "required|exists:Cargo"]);
         try {
             $cargo = Cargo::find($request->IDCARGO);
             return view('cargos.CargosShowView', compact('cargo'));
@@ -106,6 +108,9 @@ class CargoController extends Controller
      */
     public function update(Request $request, $IDCARGO)
     {
+        $request->validate([
+            'NOMBRE' => 'required'
+        ]);
         try {
             Cargo::find($IDCARGO)->update($request->except(['action', '_token']));
             return redirect()->route('cargos.index');

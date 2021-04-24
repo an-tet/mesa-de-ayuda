@@ -188,6 +188,10 @@ return [
         'IDAREA' => 'código del área',
         'IDCARGO' => 'código del cargo',
         'IDEMPLEADO' => 'código del empleado',
-
+        'FOTO' => 'La foto',
+        'HOJAVIDA' => ' hoja de vida',
+        'FECHAINI' => 'fecha de inicio',
+        'NOMBRE' => 'nombre del cargo',
+        'IDESTADO' => 'estado',
     ],
 ];

@@ -34,20 +34,10 @@
                                         <td class="center-align hide-on-med-and-down">{{ $requerimiento->FKESTADO }}</td>
 
                                         <td class="center-align">
-                                            <a href={{ route('requerimientos.index', $requerimiento->IDREQ) }}
+                                            <a href={{ route('requerimientos.edit', $requerimiento->IDREQ) }}
                                                 class="waves-effect waves-light btn-small grey darken-2">
                                                 <i class="material-icons">create</i>
                                             </a>
-                                            <form style="display: inline-block;"
-                                                action={{ route('requerimientos.destroy', $requerimiento->IDREQ) }}
-                                                method="POST">
-                                                @csrf
-                                                @method("DELETE")
-                                                <button class="waves-effect waves-light btn-small grey darken-2"
-                                                    type="submit">
-                                                    <i class="material-icons">cancel</i>
-                                                </button>
-                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
