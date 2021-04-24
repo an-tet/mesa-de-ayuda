@@ -5,7 +5,7 @@
 @endsection
 @section('content')
     <div class="container">
-        <div class="jumbotron">
+        <div class="card hiverable mt-5 p-3 hoverable">
             <h2 class="center-align">Registrar empleado</h2>
             <div class="row">
                 <form action={{ route('empleados.store') }} method="POST" class="col s12" enctype="multipart/form-data">
@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="input-field col s4">
                             <input type="text" class="validate" name="IDEMPLEADO" required>
-                            <label for="IDEMPLEADO">Código</label>
+                            <label for="IDEMPLEADO">Código empleado</label>
                             @error('IDEMPLEADO')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror

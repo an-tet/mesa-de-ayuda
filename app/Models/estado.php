@@ -14,6 +14,7 @@ class estado extends Model
     protected $primaryKey = 'IDESTADO';
 
     public $timestamps = false;
+    public $incrementing = false;
 
     protected $fillable = [
         'IDESTADO', 'NOMBRE'

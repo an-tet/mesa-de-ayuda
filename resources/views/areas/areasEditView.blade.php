@@ -3,34 +3,33 @@
 
 @section('content')
     <div class="container">
-        <div class="jumbotron">
-            <h2 class="center-align">Modificar area</h2>
+        <div class="card hiverable mt-13 p-3 hoverable">
+            <h2 class="center-align">Modificar área</h2>
             <div class="row">
-                <form action={{ route('areas.update', $area->IDAREA) }} method="POST" class="col s12">
+                <form action="{{ route('areas.update', $area->IDAREA) }}" method="POST" class="col s12">
                     @csrf
                     @method('PUT')
                     <div class="row">
-                        <div class="input-field col s12">
-                            <input type="text" class="validate" name="NOMBRE" value={{ $area->NOMBRE }} required>
-                            <label for="NOMBRE">Nombre area</label>
+                        <div class="input-field col s6">
+                            <input type="text" class="validate" name="NOMBRE" value="{{ $area->NOMBRE }}" required>
+                            <label for="NOMBRE">Nombre área *</label>
+                            @error('NOMBRE')
+                                <small class="red-text">{{ $message }}</small>
+                            @enderror
                         </div>
-                        @error('NOMBRE')
-                            <small class="red-text">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input type="text" class="validate" name="FKEMPLE" value={{ $area->FKEMPLE }}>
-                            <label for="FKEMPLE">FKEMPLE</label>
+                        <div class="input-field col s6">
+                            <select name="FKEMPLE">
+                                <option value="" selected>Asigne el jefe del área</option>
+                                @foreach ($empleados as $empleado)
+                                    <option value="{{ $empleado->IDEMPLEADO }}" @if ($empleado->IDEMPLEADO == $area->FKEMPLE) selected='selected' @endif>{{ $empleado->NOMBRE }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
-                        @error('FKEMPLE')
-                            <small class="red-text">{{ $message }}</small>
-                        @enderror
-                        @error('empleadoNoExiste')
-                            <small class="red-text">{{ $message }}</small>
-                        @enderror
+                        <small class="blue-grey-text right">Los campos que contengan un <span class="bold">*</span> son
+                            obligatorios</small>
                     </div>
-                    <div class="center">
+                    <div class="center mt-5">
                         <a href={{ route('areas.index') }} class="btn waves-effect waves-light grey darken-2">
                             <i class="material-icons left">arrow_back</i>Volver
                         </a>

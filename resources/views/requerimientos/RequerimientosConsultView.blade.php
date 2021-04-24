@@ -3,20 +3,20 @@
 
 @section('content')
     <div class="container">
-        <div class="jumbotron">
+        <div class="card hiverable mt-15 p-3 hoverable">
             <div class="row">
                 <div class="col s12">
                     <table class="list-group">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="center-align" scope="col">Id Detalle</th>
+                                    <th class="center-align" scope="col">Código</th>
                                     <th class="center-align" scope="col">Fecha de creación</th>
                                     <th class="center-align" scope="col">Observación</th>
-                                    <th class="center-align" scope="col">Area</th>
-                                    <th class="center-align" scope="col">Creador</th>
-                                    <th class="center-align" scope="col">Encargado</th>
-                                    <th class="center-align" scope="col">Estado</th>
+                                    <th class="center-align hide-on-med-and-down" scope="col">Area</th>
+                                    <th class="center-align hide-on-med-and-down" scope="col">Creador</th>
+                                    <th class="center-align hide-on-med-and-down" scope="col">Encargado</th>
+                                    <th class="center-align hide-on-med-and-down" scope="col">Estado</th>
                                     <th class="center-align" scope="col" colspan="2">Acciones</th>
                                 </tr>
                             </thead>
@@ -24,12 +24,14 @@
                                 @foreach ($requerimientos as $requerimiento)
                                     <tr>
                                         <td class="center-align" scope="row">{{ $requerimiento->IDDETALLE }}</td>
-                                        <td class="center-align" scope="row">{{ $requerimiento->FECHA }}</td>
-                                        <td class="center-align">{{ $requerimiento->OBSERVACION }}</td>
-                                        <td class="center-align">{{ $requerimiento->FKAREA }}</td>
-                                        <td class="center-align">{{ $requerimiento->FKEMPLE }}</td>
-                                        <td class="center-align">{{ $requerimiento->FKEMPLEASIGNADO }}</td>
-                                        <td class="center-align">{{ $requerimiento->FKESTADO }}</td>
+                                        <td class="center-align" scope="row">
+                                            {{ date('d-m-Y', strtotime($requerimiento->FECHA)) }}</td>
+                                        <td class="center-align">{{ substr($requerimiento->OBSERVACION, 0, 20) }}....</td>
+                                        <td class="center-align hide-on-med-and-down">{{ $requerimiento->FKAREA }}</td>
+                                        <td class="center-align hide-on-med-and-down">{{ $requerimiento->FKEMPLE }}</td>
+                                        <td class="center-align hide-on-med-and-down">
+                                            {{ $requerimiento->FKEMPLEASIGNADO }}</td>
+                                        <td class="center-align hide-on-med-and-down">{{ $requerimiento->FKESTADO }}</td>
 
                                         <td class="center-align">
                                             <a href={{ route('requerimientos.index', $requerimiento->IDREQ) }}
@@ -43,7 +45,7 @@
                                                 @method("DELETE")
                                                 <button class="waves-effect waves-light btn-small grey darken-2"
                                                     type="submit">
-                                                    <i class="material-icons">delete</i>
+                                                    <i class="material-icons">cancel</i>
                                                 </button>
                                             </form>
                                         </td>

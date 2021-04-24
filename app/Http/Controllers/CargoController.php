@@ -70,6 +70,7 @@ class CargoController extends Controller
      */
     public function show(Request $request)
     {
+        $request->validate(["IDCARGO" => "exists:Cargo"]);
         try {
             $cargo = Cargo::find($request->IDCARGO);
             return view('cargos.CargosShowView', compact('cargo'));
@@ -126,7 +127,7 @@ class CargoController extends Controller
             return redirect()->route('cargos.index');
         } catch (Exception $error) {
             if ($error->getCode() == 23000)
-                return Redirect::back()->withErrors(['errorEliminar' => 'No se puede eliminar ya que existen empleados vinculados al cargo "' . Cargo::find($IDCARGO)->NOMBRE . '"']);
+                return Redirect::back()->withErrors(['errorEliminar' => 'No se puede eliminar ya que existen empleados vinculados al cargo de "' . Cargo::find($IDCARGO)->NOMBRE . '"']);
             return view('errors.error', compact('error'));
         }
     }

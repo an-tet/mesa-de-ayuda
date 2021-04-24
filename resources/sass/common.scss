@@ -32,10 +32,25 @@ body {
 }
 
 
+
+
 // -------------------------------------------------------------
-// Magins and padding clases
+// Helpers
 // -------------------------------------------------------------
-@for $i from 1 to 21 {
+@for $i from 0 to 21 {
+
+    .m-#{$i} {
+        margin: #{$i}+'%';
+    }
+
+    .mv-#{$i} {
+        margin: #{$i}+'%'0;
+    }
+
+    .mw-#{$i} {
+        margin: 0 #{$i}+'%';
+    }
+
     .mt-#{$i} {
         margin-top: #{$i}+'%';
     }
@@ -52,21 +67,55 @@ body {
         margin-right: #{$i}+'%';
     }
 
+    .p-#{$i} {
+        padding: #{$i}+'%';
+    }
+
+    .pv-#{$i} {
+        padding: #{$i}+'%'0;
+    }
+
+    .pw-#{$i} {
+        padding: 0 #{$i}+'%';
+    }
+
     .pt-#{$i} {
-        margin-top: #{$i}+'%';
+        padding-top: #{$i}+'%';
     }
 
     .pb-#{$i} {
-        margin-bottom: #{$i}+'%';
+        padding-bottom: #{$i}+'%';
     }
 
     .pl-#{$i} {
-        margin-left: #{$i}+'%';
+        padding-left: #{$i}+'%';
     }
 
     .pr-#{$i} {
-        margin-right: #{$i}+'%';
+        padding-right: #{$i}+'%';
     }
 }
 
+.bold {
+    font-weight: bold;
+}
+
+.inline-flex-w100 {
+    display: inline-flex;
+    width: 100%;
+}
+
+.center-flex-w {
+    align-items: center;
+    justify-content: center;
+}
+
 // Media querys
+@media screen and (max-width: 1240) {
+    nav {
+        .brand-logo {
+            width: 100%;
+            text-align: center;
+        }
+    }
+}

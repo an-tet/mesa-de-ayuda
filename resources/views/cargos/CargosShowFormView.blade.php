@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container">
-        <div class="jumbotron">
+        <div class="card hiverable mt-18 p-3 hoverable">
             <h2 class="center-align">Buscar cargo</h2>
             <div class="row">
                 <form action={{ route('cargos.show') }} method="GET" class="col s12">
@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <input type="number" class="validate" name="IDCARGO" required>
-                            <label for="IDCARGO">Id cargo</label>
+                            <label for="IDCARGO">Código del cargo</label>
                         </div>
                         @error('IDCARGO')
                             <small class="red-text">{{ $message }}</small>
@@ -27,14 +27,6 @@
                     </div>
                 </form>
             </div>
-            {{-- @if ($errors->any())
-                @error('notExist')
-                    <div class="alert alert-danger center" role="alert">
-                        {{ $message }}
-                    </div>
-                @enderror
-            @endif --}}
-
         </div>
     </div>
 @endsection

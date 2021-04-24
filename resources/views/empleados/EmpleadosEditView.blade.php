@@ -5,7 +5,7 @@
 @endsection
 @section('content')
     <div class="container">
-        <div class="jumbotron">
+        <div class="card hiverable mt-5 p-3 hoverable">
             <h2 class="center-align">Modificar empleado</h2>
             <div class="row">
                 <form action={{ route('empleados.update', $empleado->IDEMPLEADO) }} method="POST" class="col s12"
@@ -13,25 +13,17 @@
                     @csrf
                     @method('PUT')
                     <div class="row">
-                        <div class="input-field col s4">
-                            <input type="text" class="validate" name="IDEMPLEADO" value={{ $empleado->IDEMPLEADO }}
-                                required>
-                            <label for="IDEMPLEADO">Id Empleado</label>
-                            @error('IDEMPLEADO')
-                                <small class="red-text">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="input-field col s4">
+                        <div class="input-field col s6">
                             <input type="text" class="validate" name="NOMBRE" value={{ $empleado->NOMBRE }}>
-                            <label for="NOMBRE">NOMBRE</label>
+                            <label for="NOMBRE">Nombre *</label>
                             @error('NOMBRE')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
                         </div>
-                        <div class="input-field col s4">
+                        <div class="input-field col s6">
                             <input type="text" class="datepicker" name="FECHAINI" required
                                 value={{ $empleado->FECHAINI }}>
-                            <label for="FECHAINI">FECHAINI</label>
+                            <label for="FECHAINI">Fecha de inicio *</label>
                             @error('FECHAINI')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
@@ -42,7 +34,7 @@
                             <div class="file-field input-field">
                                 <div class="btn grey darken-2">
                                     <span>Foto</span>
-                                    <input type="file" name="FOTO">
+                                    <input type="file" id="foto" name="FOTO">
                                 </div>
                                 <div class="file-path-wrapper">
                                     <input class="file-path validate" type="text" value={{ $empleado->FOTO }}>
@@ -56,7 +48,7 @@
                             <div class="file-field input-field">
                                 <div class="btn grey darken-2">
                                     <span>Hoja de vida</span>
-                                    <input type="file" name="HOJAVIDA">
+                                    <input type="file" id="hv" name="HOJAVIDA">
                                 </div>
                                 <div class="file-path-wrapper">
                                     <input class="file-path validate" type="text" value={{ $empleado->HOJAVIDA }}>
@@ -68,17 +60,26 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col s4 offset-s1">
+                            <img id="foto-preview" class="materialboxed responsive-img" width="300"
+                                src="{{ asset('img/no_file.png') }}">
+                        </div>
+                        <div class="col s4 offset-s2">
+                            {{-- <img id="hv-preview" class="materialboxed" width="300" src="{{ asset('img/no_file.png') }}"> --}}
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="input-field col s6">
                             <input type="number" class="validate" name="TELEFONO" required
                                 value={{ $empleado->TELEFONO }}>
-                            <label for="TELEFONO">TELEFONO</label>
+                            <label for="TELEFONO">Teléfono *</label>
                             @error('TELEFONO')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="input-field col s6">
                             <input type="email" class="validate" name="EMAIL" required value={{ $empleado->EMAIL }}>
-                            <label for="EMAIL">EMAIL</label>
+                            <label for="EMAIL">Correo electrónico *</label>
                             @error('EMAIL')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
@@ -88,21 +89,21 @@
                         <div class="input-field col s4">
                             <input type="text" class="validate" name="DIRECCION" required
                                 value={{ $empleado->DIRECCION }}>
-                            <label for="DIRECCION">DIRECCION</label>
+                            <label for="DIRECCION">Dirección *</label>
                             @error('DIRECCION')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="input-field col s4">
                             <input type="number" class="validate" name="Y" required value={{ $empleado->Y }}>
-                            <label for="Y">Y</label>
+                            <label for="Y">Coordenada Y</label>
                             @error('Y')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="input-field col s4">
                             <input type="number" class="validate" name="X" required value={{ $empleado->X }}>
-                            <label for="X">X</label>
+                            <label for="X">Coordenada X</label>
                             @error('X')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror
@@ -113,9 +114,7 @@
                             <select name="FKCARGO">
                                 <option value="" disabled>Elija su opción</option>
                                 @foreach ($cargos as $cargo)
-
-                                    <option value={{ $cargo->IDCARGO }} @if ($empleado->IDCARGO == $cargo->IDCARGO) selected='selected' @endif>
-                                        {{ $cargo->NOMBRE }}
+                                    <option value={{ $cargo->IDCARGO }} @if ($empleado->IDCARGO == $cargo->IDCARGO) selected='selected' @endif>{{ $cargo->NOMBRE }}
                                     </option>
                                 @endforeach
                             </select>
@@ -132,7 +131,7 @@
                                     </option>
                                 @endforeach
                             </select>
-                            <label>Area</label>
+                            <label>Area *</label>
                             @error('fkAREA')
                                 <small class="red-text">{{ $message }}</small>
                             @enderror

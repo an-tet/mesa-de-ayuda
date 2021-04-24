@@ -3,9 +3,9 @@
     <link rel="stylesheet" href="{{ asset('css/auth/login.css') }}">
 @endsection
 @section('content')
-    <div class="container mt-15">
+    <div class="container mt-8">
         <div class="row">
-            <div class="col s12 m10 offset-m1 l8 offset-l3">
+            <div class="col s12 m10 offset-m1 l8 offset-l2">
                 {{-- Card --}}
                 <div class="card">
                     <div class="card-content">

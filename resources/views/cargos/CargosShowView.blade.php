@@ -3,8 +3,8 @@
 
 @section('content')
     <div class="container">
-        <div class="jumbotron">
-            <h2 class="center-align">Modificar Cargo</h2>
+        <div class="card hiverable mt-10 p-3 hoverable">
+            <h2 class="center-align">Buscar cargo</h2>
             <div class="row">
 
                 <div class="row">
@@ -29,6 +29,10 @@
                 <div class="center">
                     <a href={{ route('cargos.show_resource') }} class="btn waves-effect waves-light grey darken-2">
                         <i class="material-icons left">arrow_back</i>Volver
+                    </a>
+                    <a href={{ route('cargos.edit', $cargo->IDCARGO) }}
+                        class="btn waves-effect waves-light grey darken-2">
+                        <i class=" material-icons left">create</i>Modificar
                     </a>
                 </div>
             </div>

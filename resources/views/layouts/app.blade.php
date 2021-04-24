@@ -55,7 +55,7 @@
                     </div>
                     Mesa de ayuda
                 </a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">Menú</i></a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     @guest
                         @if (Route::has('login'))
@@ -82,7 +82,7 @@
                             </a>
                             <!-- Dropdown Structure -->
                             <ul id="dropdown1" class="dropdown-content">
-                                <li><a href="{{ route('areas.index') }}">Buscar</a></li>
+                                <li><a href="{{ route('areas.index') }}">Consultar</a></li>
                                 <li><a href="{{ route('areas.create') }}">Crear</a></li>
                             </ul>
                         </li>
@@ -93,7 +93,7 @@
                             </a>
                             <!-- Dropdown Structure -->
                             <ul id="dropdown2" class="dropdown-content">
-                                <li><a href="{{ route('empleados.index') }}">Buscar</a></li>
+                                <li><a href="{{ route('empleados.index') }}">Consultar</a></li>
                                 <li><a href="{{ route('empleados.create') }}">Registrar</a></li>
                             </ul>
                         </li>
@@ -104,7 +104,7 @@
                             </a>
                             <!-- Dropdown Structure -->
                             <ul id="dropdown3" class="dropdown-content">
-                                <li><a href="{{ route('cargos.index') }}">Buscar</a></li>
+                                <li><a href="{{ route('cargos.index') }}">Consultar</a></li>
                                 <li><a href="{{ route('cargos.create') }}">Crear</a></li>
                             </ul>
                         </li>
@@ -115,7 +115,7 @@
                             </a>
                             <!-- Dropdown Structure -->
                             <ul id="dropdown4" class="dropdown-content">
-                                <li><a href="{{ route('requerimientos.index') }}">Buscar</a></li>
+                                <li><a href="{{ route('requerimientos.index') }}">Consultar</a></li>
                                 <li><a href="{{ route('requerimientos.create') }}">Crear</a></li>
                             </ul>
                         </li>
@@ -201,6 +201,8 @@
             var instances = M.Dropdown.init(elems);
             var elems = document.querySelectorAll('select');
             M.FormSelect.init(elems);
+            var elems = document.querySelectorAll('.materialboxed');
+            var instances = M.Materialbox.init(elems);
         });
 
     </script>

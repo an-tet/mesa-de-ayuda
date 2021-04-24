@@ -49,11 +49,6 @@ class AreaController extends Controller
             'NOMBRE' => 'required',
         ]);
         try {
-            // TODO - Optimizar validacion
-            if ($request->FKEMPLE != '') {
-                $empleado = Empleado::find($request->FKEMPLE);
-                if (!$empleado) return Redirect::back()->withErrors(['empleadoNoExiste' => 'El id del empleado "' . $request->FKEMPLE . '" no existe']);
-            }
             Area::create($request->except(['action', '_token']));
             return redirect()->route('areas.index');
         } catch (Exception $error) {
@@ -96,7 +91,8 @@ class AreaController extends Controller
     {
         try {
             $area = Area::find($IDAREA);
-            return view('areas.AreasEditView', compact('area'));
+            $empleados = Empleado::all();
+            return view('areas.AreasEditView', ['area' => $area, 'empleados' => $empleados]);
         } catch (Exception $error) {
             return view('errors.error', compact('error'));
         }
@@ -114,10 +110,10 @@ class AreaController extends Controller
         $request->validate(['NOMBRE' => 'required']);
         try {
             // TODO - Optimizar validacion
-            if ($request->FKEMPLE != '') {
-                $empleado = Empleado::find($request->FKEMPLE);
-                if (!$empleado) return Redirect::back()->withErrors(['empleadoNoExiste' => 'El id del empleado "' . $request->FKEMPLE . '" no existe']);
-            }
+            // if ($request->FKEMPLE != '') {
+            //     $empleado = Empleado::find($request->FKEMPLE);
+            //     if (!$empleado) return Redirect::back()->withErrors(['empleadoNoExiste' => 'El id del empleado "' . $request->FKEMPLE . '" no existe']);
+            // }
             Area::find($IDAREA)->update($request->except(['action', '_token']));
             return redirect()->route('areas.index');
         } catch (Exception $error) {

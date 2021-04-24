@@ -14,6 +14,7 @@ class Area extends Model
     protected $primaryKey = 'IDAREA';
 
     public $timestamps = false;
+    public $incrementing = false;
 
     protected $fillable = [
         'IDAREA', 'NOMBRE', 'FKEMPLE'

@@ -1,9 +1,11 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/css/auth/login.css": "/css/auth/login.css",
+    "/css/empleados/empleados.css": "/css/empleados/empleados.css",
     "/css/common.css": "/css/common.css",
     "/css/index.css": "/css/index.css",
+    "/css/auth/login.css": "/css/auth/login.css",
     "/sql/mesa_ayuda.sql": "/sql/mesa_ayuda.sql",
-    "/js/empleado.js": "/js/empleado.js"
+    "/js/empleado.js": "/js/empleado.js",
+    "/img/no_file.png": "/img/no_file.png"
 }

@@ -40,7 +40,7 @@ return [
     'distinct'             => 'El campo :attribute contiene un valor duplicado.',
     'email'                => ':attribute no es un correo válido.',
     'ends_with'            => 'El campo :attribute debe finalizar con uno de los siguientes valores: :values',
-    'exists'               => 'El ":attribute" es inválido o no existe.',
+    'exists'               => 'El :attribute no es válido o no existe.',
     'file'                 => 'El campo :attribute debe ser un archivo.',
     'filled'               => 'El campo :attribute es obligatorio.',
     'gt'                   => [
@@ -185,5 +185,9 @@ return [
         'username'              => 'usuario',
         'year'                  => 'año',
         'FKEMPLE'                  => 'empleado',
+        'IDAREA' => 'código del área',
+        'IDCARGO' => 'código del cargo',
+        'IDEMPLEADO' => 'código del empleado',
+
     ],
 ];

@@ -33,3 +33,31 @@ document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.datepicker');
     M.Datepicker.init(elems, options);
 });
+
+
+window.onload = () => {
+    let foto = document.getElementById("foto");
+    let fotoPreview = document.getElementById("foto-preview");
+
+    async function loadPhoto(event) {
+        fotoPreview.src = await readURL(event.target.files[0]);
+    }
+    foto.addEventListener("change", loadPhoto, false);
+
+    // let hv = document.getElementById("hv");
+    // let hvPreview = document.getElementById("hv-preview");
+
+    // function loadHV(event) {
+    //     console.log(event.target.files);
+    // }
+    // hv.addEventListener("change", loadHV, false);
+
+    const readURL = file => {
+        return new Promise((res, rej) => {
+            const reader = new FileReader();
+            reader.onload = e => res(e.target.result);
+            reader.onerror = e => rej(e);
+            reader.readAsDataURL(file);
+        });
+    };
+};

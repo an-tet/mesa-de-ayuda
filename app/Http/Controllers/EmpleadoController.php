@@ -48,11 +48,12 @@ class EmpleadoController extends Controller
     {
         $request->validate([
             'IDEMPLEADO' => 'required|max:20|unique:Empleado',
-            'NOMBRE' => 'required|max:255',
-            'FOTO' => '',
-            'HOJAVIDA' => '',
+            'NOMBRE' => 'required|max:100',
+            'FOTO' => 'sometimes|mimes:jpg,png',
+            'HOJAVIDA' => 'sometimes|mimes:pdf,docx',
             'TELEFONO' => 'required|max:7|min:7',
-            'EMAIL' => 'required|email|max:255|unique:Empleado',
+            'EMAIL' => 'required|email|max:100|unique:Empleado',
+            'DIRECCION' => 'required',
             'X' => '',
             'Y' => '',
             'FECHAINI' => 'required|date_format:Y-m-d',
@@ -96,7 +97,7 @@ class EmpleadoController extends Controller
     public function show(Request $request)
     {
         $request->validate([
-            'IDEMPLEADO' => 'required',
+            'IDEMPLEADO' => 'required|exists:Empleado',
         ]);
         $empleado = DB::table('empleado')
             ->join('cargo_por_empleado', 'empleado.IDEMPLEADO', '=', 'cargo_por_empleado.FKEMPLE')
@@ -104,8 +105,6 @@ class EmpleadoController extends Controller
             ->select('empleado.*', 'cargo.NOMBRE as NOMBRE_CARGO', 'cargo_por_empleado.FECHAINI')
             ->where('IDEMPLEADO', '=', $request->IDEMPLEADO)
             ->get();
-        if (!$empleado)
-            return Redirect::back()->withErrors(['notExist' => 'El id del empleado "' . $request->IDEMPLEADO . '" no existe']);
         return view('empleados.EmpleadosShowView', ['empleado' => $empleado[0]]);
     }
 
@@ -139,12 +138,12 @@ class EmpleadoController extends Controller
     public function update(Request $request, $IDEMPLEADO)
     {
         $request->validate([
-            'IDEMPLEADO' => 'required|max:20|unique:Empleado,IDEMPLEADO,' . $IDEMPLEADO . ',IDEMPLEADO',
-            'NOMBRE' => 'required|max:255',
-            'FOTO' => '',
-            'HOJAVIDA' => '',
+            'NOMBRE' => 'required|max:100',
+            'FOTO' => 'sometimes|mimes:jpg,png',
+            'HOJAVIDA' => 'sometimes|mimes:pdf,docx',
             'TELEFONO' => 'required|max:7|min:7',
-            'EMAIL' => 'required|email|max:255|unique:Empleado,email,' . $IDEMPLEADO . ',IDEMPLEADO',
+            'EMAIL' => 'required|email|max:100|unique:Empleado,email,' . $IDEMPLEADO . ',IDEMPLEADO',
+            'DIRECCION' => 'required|max:100',
             'X' => '',
             'Y' => '',
             'FECHAINI' => 'required|date_format:Y-m-d',
@@ -179,16 +178,10 @@ class EmpleadoController extends Controller
     public function destroy($idEmpleado)
     {
         try {
-            //No se elimina debido a que solo puede ser posible por un elimiando logico
-            $fkEMPLE_JEFE = null;
-            if (Area::where('FKEMPLE', '=', $idEmpleado)->exists()) {
-                Empleado::whereIn('fkEMPLE_JEFE', [$idEmpleado])->update(['fkEMPLE_JEFE' => $fkEMPLE_JEFE]);
-                Area::whereIn('fkEMPLE', [$idEmpleado])->update(['fkEMPLE' => $fkEMPLE_JEFE]);
-            }
             Empleado::destroy($idEmpleado);
             return redirect()->route('empleados.index');
         } catch (Exception $error) {
-            return view('errors.error', compact('error'));
+            return Redirect::back()->withErrors(['deleteError' => 'El empleado no puede ser eliminado, debido a que esta ligado a otra dependencia']);
         }
     }
 }
