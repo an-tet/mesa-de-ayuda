@@ -51,10 +51,11 @@
                             </select>
                         </div>
                         <div class="input-field col s6">
-                            <select name="FKESTADO">
+                            <select name="FKESTADO" @if ($requerimiento->FKESTADO == 5 || $requerimiento->FKESTADO == 4) disabled @endif>
                                 <option value="" disabled selected>Asigne el estado</option>
                                 @foreach ($estados as $estado)
                                     <option value={{ $estado->IDESTADO }} @if ($requerimiento->FKESTADO == $estado->IDESTADO) selected='selected' @endif @if ($estado->IDESTADO == 1)disabled
+
                                 @endif>{{ $estado->NOMBRE }}
                                 </option>
                                 @endforeach
@@ -64,11 +65,18 @@
                             @enderror
                         </div>
                     </div>
+                    @if ($requerimiento->FKESTADO == 5 || $requerimiento->FKESTADO == 4)
+                        <div class="alert alert-warning center">
+                            El requerimiento se ha marcado como {{ $estados[$requerimiento->FKESTADO - 1]->NOMBRE }} por
+                            lo tanto no puede ser modificado
+                        </div>
+                    @endif
                     <div class="center">
                         <a href={{ route('requerimientos.index') }} class="btn waves-effect waves-light grey darken-2">
                             <i class="material-icons left">arrow_back</i>Volver
                         </a>
-                        <button class="btn waves-effect waves-light grey darken-2" type="submit" name="action">Modificar
+
+                        <button class="btn waves-effect waves-light grey darken-2" type="submit" name="action" @if ($requerimiento->FKESTADO == 5 || $requerimiento->FKESTADO == 4) disabled @endif>Modificar
                             <i class="material-icons right">send</i>
                         </button>
                     </div>
