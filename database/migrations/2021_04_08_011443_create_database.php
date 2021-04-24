@@ -39,7 +39,7 @@ class CreateDatabase extends Migration
     {
         $tables = DB::select('SHOW FULL TABLES FROM mesa_ayuda;');
         foreach ($tables as  $value) {
-            if ($value->Tables_in_mesa_ayuda != 'migrations') Schema::dropIfExists($value->Tables_in_mesa_ayuda);
+            if ($value->Tables_in_mesa_ayuda != 'migrations' || $value->Tables_in_mesa_ayuda != 'filed_jobs') Schema::dropIfExists($value->Tables_in_mesa_ayuda);
         }
     }
 }
