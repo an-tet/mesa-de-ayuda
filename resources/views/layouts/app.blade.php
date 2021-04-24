@@ -156,7 +156,7 @@
                     <a href="{{ route('home.index') }}">Inicio</a>
                 </li>
                 <li>
-                    <a class="dropdown-trigger" href="#!" data-target="dropdown1">
+                    <a class="dropdown-trigger" href="#!" data-target="dropdown1side">
                         Areas
                         <i class="material-icons right">arrow_drop_down</i>
                     </a>
