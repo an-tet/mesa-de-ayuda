@@ -20,5 +20,5 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/auth/login.scss', 'public/css/auth')
     .copy('resources/sql/mesa_ayuda.sql', 'public/sql/mesa_ayuda.sql')
     .copy('resources/js/empleado.js', 'public/js/empleado.js')
-    .copy('resources/img/no_file.png', 'public/img/no_file.png')
+    .copy('resources/img/people.png', 'public/img/people.png')
     .browserSync('127.0.0.1:8000');

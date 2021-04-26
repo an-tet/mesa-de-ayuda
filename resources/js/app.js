@@ -6,6 +6,7 @@
 
 // require('./bootstrap');
 
+import Materialize from 'materialize-css';
 window.Vue = require('vue').default;
 
 /**

@@ -24,10 +24,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
     <!-- Framework materializecss JS CDN -->
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -43,7 +45,7 @@
         <nav class="blue-grey darken-3">
             <div class="nav-wrapper">
                 <a href="{{ route('home.index') }}" class="brand-logo">
-                    <div class="cube-container">
+                    <div class="cube-container mt-5">
                         <div class="cube">
                             <div class="cube__side" id="top"></div>
                             <div class="cube__side" id="front"></div>
@@ -70,13 +72,13 @@
                             </li>
                         @endif
                     @endguest
-
+                    {{-- Navbar --}}
                     @auth
                         <li>
                             <a href="{{ route('home.index') }}">Inicio</a>
                         </li>
                         <li>
-                            <a class="dropdown-trigger" href="#!" data-target="dropdown1">
+                            <a class="dropdown-trigger pl-0" href="#!" data-target="dropdown1">
                                 Areas
                                 <i class="material-icons right">arrow_drop_down</i>
                             </a>
@@ -87,7 +89,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a class="dropdown-trigger" href="#!" data-target="dropdown2">
+                            <a class="dropdown-trigger pl-0" href="#!" data-target="dropdown2">
                                 Empleados
                                 <i class="material-icons right">arrow_drop_down</i>
                             </a>
@@ -98,7 +100,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a class="dropdown-trigger" href="#!" data-target="dropdown3">
+                            <a class="dropdown-trigger pl-0" href="#!" data-target="dropdown3">
                                 Cargos
                                 <i class="material-icons right">arrow_drop_down</i>
                             </a>
@@ -109,7 +111,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a class="dropdown-trigger" href="#!" data-target="dropdown4">
+                            <a class="dropdown-trigger pl-0" href="#!" data-target="dropdown4">
                                 Requerimientos
                                 <i class="material-icons right">arrow_drop_down</i>
                             </a>
@@ -121,7 +123,9 @@
                         </li>
                         <!-- Dropdown Trigger -->
                         <a class='dropdown-trigger btn blue-grey ' href='#' data-target='dropdown'>
-                            {{ Auth::user()->name }}
+                            <span class="material-icons left">
+                                person
+                            </span>{{ Auth::user()->name }}
                         </a>
                         <!-- Dropdown Structure -->
                         <ul id='dropdown' class='dropdown-content'>
@@ -136,10 +140,12 @@
                             </li>
                         </ul>
                     @endauth
+                    {{-- End navbar --}}
                 </ul>
             </div>
         </nav>
 
+        {{-- Sidebar --}}
         <ul class="sidenav" id="mobile-demo">
             @auth
                 <li>
@@ -147,13 +153,27 @@
                         <div class="background">
                             <img src="">
                         </div>
-                        <a href="#user"><img class="circle" src="{{ asset('/img/no_file.png') }}"></a>
-                        <a href="#name"><span class="black-text name">{{ Auth::user()->name }}</span></a>
-                        <a href="#email"><span class="black-text email">{{ Auth::user()->email }}</span></a>
+                        <a href="#user"><img class="circle" src="{{ asset('/img/people.png') }}"></a>
+                        <a href="#name">
+                            <span class="black-text name">
+                                <span class="material-icons left mr-3">
+                                    person
+                                </span>
+                                {{ Auth::user()->name }}
+                            </span>
+                        </a>
+                        <a href="#email"><span class="black-text email">
+                                <span class="material-icons left mr-3">
+                                    email
+                                </span>{{ Auth::user()->email }}
+                            </span>
+                        </a>
                     </div>
                 </li>
                 <li>
-                    <a href="{{ route('home.index') }}">Inicio</a>
+                    <a href="{{ route('home.index') }}">
+                        Inicio
+                    </a>
                 </li>
                 <li>
                     <a class="dropdown-trigger" href="#!" data-target="dropdown1side">
@@ -199,12 +219,12 @@
                         <li><a href="{{ route('requerimientos.create') }}">Crear</a></li>
                     </ul>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="{{ url('/') }}">
                         <i class="material-icons">help_center</i>
                         {{ config('app.name', 'Laravel') }}
                     </a>
-                </li>
+                </li> --}}
             @endauth
             @guest
                 @if (Route::has('login'))
@@ -220,6 +240,7 @@
                 @endif
             @endguest
         </ul>
+        {{-- End sidebar --}}
 
         <main class="py-4">
             @yield('content')
@@ -234,7 +255,14 @@
             var elems = document.querySelectorAll('select');
             M.FormSelect.init(elems);
             var elems = document.querySelectorAll('.materialboxed');
-            var instances = M.Materialbox.init(elems);
+            var instances = M.Materialbox.init(elems, {
+                inDuration: 300,
+                outDuration: 225,
+                constrain_width: true,
+                hover: false,
+                gutter: 0,
+                belowOrigin: false
+            });
         });
 
     </script>
