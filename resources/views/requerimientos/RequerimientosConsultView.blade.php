@@ -3,7 +3,9 @@
 
 @section('content')
     <div class="container">
-        <div class="card hiverable mt-15 p-3 hoverable">
+        <div class="card hiverable mt-10 p-2 hoverable">
+            <h2 class="center">Requerimientos</h2>
+            <hr>
             <div class="row">
                 <div class="col s12">
                     <table class="list-group">
@@ -23,7 +25,7 @@
                             <tbody>
                                 @foreach ($requerimientos as $requerimiento)
                                     <tr>
-                                        <td class="center-align" scope="row">{{ $requerimiento->IDDETALLE }}</td>
+                                        <td class="center-align" scope="row">{{ $requerimiento->IDREQ }}</td>
                                         <td class="center-align" scope="row">
                                             {{ date('d-m-Y', strtotime($requerimiento->FECHA)) }}</td>
                                         <td class="center-align">{{ substr($requerimiento->OBSERVACION, 0, 20) }}....</td>
@@ -56,15 +58,13 @@
                 <a href={{ route('home.index') }} class="btn waves-effect waves-light grey darken-2">
                     <i class="material-icons left">arrow_back</i>Volver
                 </a>
-                <a href={{ route('areas.show_resource') }} class="btn waves-effect waves-light grey darken-2">
+                <a href={{ route('requerimientos.create') }} class="btn waves-effect waves-light grey darken-2">
+                    <i class="material-icons left">add</i>Crear
+                </a>
+                <a href={{ route('requerimientos.show_resource') }} class="btn waves-effect waves-light grey darken-2">
                     <i class="material-icons right">search</i>Buscar
                 </a>
             </div>
-        </div>
-        <div class="center">
-            <a href={{ route('requerimientos.create') }} class="btn-floating btn-large waves-effect waves-light red">
-                <i class="material-icons">add</i>
-            </a>
         </div>
     </div>
 @endsection

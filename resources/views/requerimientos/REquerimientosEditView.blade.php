@@ -42,7 +42,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <select name="FKEMPLEASIGNADO" disabled>
+                            <select name="FKEMPLEASIGNADO" @if ($requerimiento->FKEMPLEASIGNADO != null) disabled @endif>
                                 <option value="" disabled selected>Asigne el empleado</option>
                                 @foreach ($empleados as $empleado)
                                     <option value={{ $empleado->IDEMPLEADO }} @if ($requerimiento->FKEMPLEASIGNADO == $empleado->IDEMPLEADO) selected='selected' @endif>{{ $empleado->NOMBRE }}

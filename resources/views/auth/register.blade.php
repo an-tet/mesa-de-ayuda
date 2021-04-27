@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-10">
+    <div class="container mt-4">
         <div class="row">
-            <div class="col s12 m10 offset-m1 l8 offset-l3">
+            <div class="col s12 m2 offset-m1 l8 offset-l3">
                 <div class="card">
 
                     <div class="card-content">

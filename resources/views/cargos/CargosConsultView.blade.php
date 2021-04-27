@@ -3,7 +3,8 @@
 
 @section('content')
     <div class="container">
-        <div class="card hiverable mt-9 pv-3 hoverable">
+        <div class="card hiverable mt-10 p-2 hoverable">
+            <h2 class="center">Cargos</h2>
             <div class="row">
                 <div class="col s12">
                     <table class="list-group">

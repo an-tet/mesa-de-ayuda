@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class RequerimientoController extends Controller
 {
@@ -93,9 +94,22 @@ class RequerimientoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $request->validate([
+            'IDREQ' => 'required|exists:Requerimiento',
+        ]);
+        try {
+            $requerimiento = DB::table('requerimiento')
+                ->join('detallereq', 'requerimiento.IDREQ', '=', 'detallereq.FKREQ')
+                ->select('requerimiento.*', 'detallereq.*')
+                ->where('IDREQ', '=', $request->IDREQ)
+                ->get();
+            // return $requerimiento;
+            return view('requerimientos.RequerimientosShowView', ['requerimiento' => $requerimiento[0]]);
+        } catch (Exception $error) {
+            return view('errors.error', compact('error'));
+        }
     }
 
     /**
@@ -127,12 +141,19 @@ class RequerimientoController extends Controller
     public function update(Request $request, $FKREQ)
     {
         $request->validate([
-            'FKESTADO' => 'required|not_in:0'
+            'FKESTADO' => 'required|not_in:0',
+            'FKEMPLEASIGNADO' => 'sometimes|not_in:0',
         ]);
 
+        // return $request;
+        $update = ['FKESTADO' => $request->FKESTADO];
+        // return DB::table('detallereq')->select('FKEMPLEASIGNADO')->where('FKREQ', '=', $FKREQ)->get()[0]->FKEMPLEASIGNADO == null;
+        if (DB::table('detallereq')->select('FKEMPLEASIGNADO')->where('FKREQ', '=', $FKREQ)->get()[0]->FKEMPLEASIGNADO == null) {
+            $update += ['FKEMPLEASIGNADO' => $request->FKEMPLEASIGNADO];
+        }
         DB::table('detallereq')
             ->where('FKREQ', '=', $FKREQ)
-            ->update(['FKESTADO' => $request->FKESTADO]);
+            ->update($update);
         return redirect()->route('requerimientos.index');
     }
 
@@ -142,7 +163,13 @@ class RequerimientoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($IDDETALLE)
+    public function destroy($IDREQ)
     {
+        try {
+            Requerimiento::destroy($IDREQ);
+            return redirect()->route('requermienitos.index');
+        } catch (Exception $error) {
+            return Redirect::back()->withErrors(['deleteError' => 'El requerimiento no puede ser eliminado, debido a que esta ligado a un empleado']);
+        }
     }
 }

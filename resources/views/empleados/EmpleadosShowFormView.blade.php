@@ -33,6 +33,13 @@
                     </div>
                 </form>
             </div>
+            @if ($errors->any())
+                @error('notExist')
+                    <div class="alert alert-danger" role="alert">
+                        {{ $message }}
+                    </div>
+                @enderror
+            @endif
         </div>
     </div>
 @endsection
