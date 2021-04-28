@@ -5,9 +5,10 @@
 2. [Requerimientos](#requerimientos)
     2.1. [Base de datos](#BD)
     2.2. [Desarrollo](#desarrollo)
-3. [Manual de uso](#manual)
+3. [Manual de instalación](#manuali)
     3.1. [Instalaciones]($instalaciones)
     3.2 [Instalación app]($instalacion)
+4. [Manual de uso]($manualu)
 
 <div id="contexto">
 
@@ -36,9 +37,9 @@ Con dos tablas:
  
 El programa debe iniciar por un index.html que contenga los hipervínculos a los CRUD de Areas y Empleados
  
- <div id="manual">
+ <div id="manuali">
 
-## Manual de uso
+## Manual de instalación
  
 Los siguiente son los pasos necesarios para ejecutar el aplicativo web de **laravel**
  
@@ -90,5 +91,13 @@ Siga los enlaces pàra llegar a sus proveedores, enso de tener problemas al inst
  
 Al haber seguido todos los pasos de forma correcta debería estar viendo el aplicativo en su navegador como se ve en la siguiente imagen
 
-![image](https://user-images.githubusercontent.com/51238797/111096502-abe65480-850d-11eb-9607-450fa53a8667.png)
+![image](https://user-images.githubusercontent.com/51238797/116344900-b3577980-a7ac-11eb-8bce-7b819fc9b324.png)
+
+<div id="manualu>
+
+## Manual de uso
+En el siguiente PDF encontraran paso a paso las funcionalides del aplicativo
+
+[Guia de aplicación PHP- Laravel](https://github.com/cubitoSempai/mesa-de-ayuda/files/6388981/Guia.de.aplicacion.PHP-.Laravel.docx.pdf)
+
 
