@@ -93,7 +93,7 @@ Al haber seguido todos los pasos de forma correcta debería estar viendo el apli
 
 ![image](https://user-images.githubusercontent.com/51238797/116344900-b3577980-a7ac-11eb-8bce-7b819fc9b324.png)
 
-<div id="manualu>
+<div id="manualu">
 
 ## Manual de uso
 En el siguiente PDF encontraran paso a paso las funcionalides del aplicativo
