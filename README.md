@@ -6,9 +6,9 @@
     2.1. [Base de datos](#BD)
     2.2. [Desarrollo](#desarrollo)
 3. [Manual de instalación](#manuali)
-    3.1. [Instalaciones]($instalaciones)
-    3.2 [Instalación app]($instalacion)
-4. [Manual de uso]($manualu)
+    3.1. [Instalaciones](#instalaciones)
+    3.2 [Instalación app](#instalacion)
+4. [Manual de uso](#manualu)
 
 <div id="contexto">
 
