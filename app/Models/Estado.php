@@ -5,25 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class requerimiento extends Model
+class Estado extends Model
 {
     use HasFactory;
 
-    protected $table = 'requerimiento';
+    protected $table = 'estado';
 
-    protected $primaryKey = 'IDREQ';
+    protected $primaryKey = 'IDESTADO';
 
     public $timestamps = false;
+    public $incrementing = false;
 
     protected $fillable = [
-        'IDREQ', 'FKAREA'
+        'IDESTADO', 'NOMBRE'
     ];
 
     public function detallereq()
-    {
-    }
-
-    public function area()
     {
     }
 }

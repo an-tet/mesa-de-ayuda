@@ -5,22 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class estado extends Model
+class CargoPorEmpleado extends Model
 {
     use HasFactory;
 
-    protected $table = 'estado';
+    protected $table = 'cargo_por_empleado';
 
-    protected $primaryKey = 'IDESTADO';
+    protected $primaryKey = ['FKCARGO', 'FKEMPLE'];
 
     public $timestamps = false;
     public $incrementing = false;
 
     protected $fillable = [
-        'IDESTADO', 'NOMBRE'
+        'FKCARGO', 'FKEMPLE', 'FECHAINI', 'FECHAFIN'
     ];
 
-    public function detallereq()
+    public function empleado()
+    {
+    }
+
+    public function cargo()
     {
     }
 }

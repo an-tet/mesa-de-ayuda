@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\cargo;
+use App\Models\Cargo;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;

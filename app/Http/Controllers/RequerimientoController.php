@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Area;
-use App\Models\detallereq;
+use App\Models\DetalleReq;
 use App\Models\Empleado;
-use App\Models\estado;
+use App\Models\Estado;
 use App\Models\requerimiento;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -71,7 +71,7 @@ class RequerimientoController extends Controller
             Requerimiento::create(['FKAREA' => $request->FKAREA]);
             $FECHAINI = Carbon::now()->format('Y-m-d');
             $IDREQ = Requerimiento::latest("IDREQ")->first();
-            Detallereq::create(['FECHA' => $FECHAINI, 'OBSERVACION' => $request->OBSERVACION, 'FKREQ' => $IDREQ->IDREQ, 'FKESTADO' => $request->IDESTADO, 'FKEMPLE' => $request->FKEMPLE, 'FKEMPLEASIGNADO' => $request->FKEMPLEASIGNADO]);
+            DetalleReq::create(['FECHA' => $FECHAINI, 'OBSERVACION' => $request->OBSERVACION, 'FKREQ' => $IDREQ->IDREQ, 'FKESTADO' => $request->IDESTADO, 'FKEMPLE' => $request->FKEMPLE, 'FKEMPLEASIGNADO' => $request->FKEMPLEASIGNADO]);
             return redirect()->route('requerimientos.index');
         } catch (Exception $error) {
             return view('errors.error', compact('error'));

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Area;
-use App\Models\cargo;
-use App\Models\cargo_por_empleado;
+use App\Models\Cargo;
+use App\Models\CargoPorEmpleado;
 use App\Models\Empleado;
 use Exception;
 use Illuminate\Http\Request;
@@ -83,7 +83,7 @@ class EmpleadoController extends Controller
             $opcionales += ['fkEMPLE_JEFE' => $request->fkEMPLE_JEFE];
 
         Empleado::create(array_merge($request->except(['_token', 'action', 'FOTO', 'HOJAVIDA']), $opcionales));
-        cargo_por_empleado::create(['FKCARGO' => $request->FKCARGO, 'FKEMPLE' => $request->IDEMPLEADO, 'FECHAINI' => $request->FECHAINI]);
+        CargoPorEmpleado::create(['FKCARGO' => $request->FKCARGO, 'FKEMPLE' => $request->IDEMPLEADO, 'FECHAINI' => $request->FECHAINI]);
         return redirect()->route('empleados.index');
     }
 
@@ -174,7 +174,7 @@ class EmpleadoController extends Controller
         if ($request->has('fkEMPLE_JEFE'))
             $opcionales += ['fkEMPLE_JEFE' => $request->fkEMPLE_JEFE];
         Empleado::find($IDEMPLEADO)->update(array_merge($request->except(['_token', 'action', 'FOTO', 'HOJAVIDA']), $opcionales));
-        cargo_por_empleado::where('FKEMPLE', '=', $IDEMPLEADO)->update(['FKCARGO' => $request->FKCARGO, 'FECHAINI' => $request->FECHAINI]);
+        CargoPorEmpleado::where('FKEMPLE', '=', $IDEMPLEADO)->update(['FKCARGO' => $request->FKCARGO, 'FECHAINI' => $request->FECHAINI]);
         return redirect()->route('empleados.index')->withSuccess('funciona');
     }
 
