@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
     // <---------------------------- Home routes --------------------------------------------------------->
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
     Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+    //about ud is in a principal page before loged
 
     // <---------------------------- Areas routes --------------------------------------------------------->
     Route::get('/areas/show_resource', [AreaController::class, 'show_resource'])->name('areas.show_resource');
