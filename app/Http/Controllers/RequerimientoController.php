@@ -6,7 +6,7 @@ use App\Models\Area;
 use App\Models\DetalleReq;
 use App\Models\Empleado;
 use App\Models\Estado;
-use App\Models\requerimiento;
+use App\Models\Requerimiento;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Exception;

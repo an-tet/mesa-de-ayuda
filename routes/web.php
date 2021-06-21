@@ -30,20 +30,24 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home.index');
     //about ud is in a principal page before loged
 
-    // <---------------------------- Areas routes --------------------------------------------------------->
-    Route::get('/areas/show_resource', [AreaController::class, 'show_resource'])->name('areas.show_resource');
-    Route::get('/areas/show', [AreaController::class, 'show'])->name('areas.show');
-    Route::resource('/areas', AreaController::class)->except('show')->parameters(['areas' => 'IDAREA']);
 
-    // <---------------------------- Cargo routes --------------------------------------------------------->
-    Route::get('/cargos/show_resource', [CargoController::class, 'show_resource'])->name('cargos.show_resource');
-    Route::get('/cargos/show', [CargoController::class, 'show'])->name('cargos.show');
-    Route::resource('/cargos', CargoController::class)->except('show')->parameters(['cargos' => 'IDCARGO']);
+    Route::group(['middleware' => ['role:administrador']], function () {
+        // <---------------------------- Areas routes --------------------------------------------------------->
+        Route::get('/areas/show_resource', [AreaController::class, 'show_resource'])->name('areas.show_resource');
+        Route::get('/areas/show', [AreaController::class, 'show'])->name('areas.show');
+        Route::resource('/areas', AreaController::class)->except('show')->parameters(['areas' => 'IDAREA']);
 
-    // <---------------------------- Empleados routes --------------------------------------------------------->
-    Route::get('/empleados/show', [EmpleadoController::class, 'show'])->name('empleados.show');
-    Route::get('/empleados/show_resource', [EmpleadoController::class, 'show_resource'])->name('empleados.show_resource');
-    Route::resource('/empleados', EmpleadoController::class)->except('show')->parameters(['empleados' => 'IDEMPLEADO']);
+        // <---------------------------- Cargo routes --------------------------------------------------------->
+        Route::get('/cargos/show_resource', [CargoController::class, 'show_resource'])->name('cargos.show_resource');
+        Route::get('/cargos/show', [CargoController::class, 'show'])->name('cargos.show');
+        Route::resource('/cargos', CargoController::class)->except('show')->parameters(['cargos' => 'IDCARGO']);
+
+        // <---------------------------- Empleados routes --------------------------------------------------------->
+        Route::get('/empleados/show', [EmpleadoController::class, 'show'])->name('empleados.show');
+        Route::get('/empleados/show_resource', [EmpleadoController::class, 'show_resource'])->name('empleados.show_resource');
+        Route::resource('/empleados', EmpleadoController::class)->except('show')->parameters(['empleados' => 'IDEMPLEADO']);
+    });
+
 
     // <---------------------------- Empleados routes --------------------------------------------------------->
     Route::get('/requerimientos/show', [RequerimientoController::class, 'show'])->name('requerimientos.show');
