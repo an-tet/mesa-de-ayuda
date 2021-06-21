@@ -55,7 +55,8 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        // return dd($request);
+        return $request->validate([
             'IDEMPLEADO' => 'required|max:20|unique:Empleado',
             'NOMBRE' => 'required|max:100',
             'FOTO' => 'sometimes|mimes:jpg,png',
