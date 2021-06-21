@@ -16,25 +16,12 @@ use Illuminate\Support\Facades\Redirect;
 class RequerimientoController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        // return DB::table('requerimiento')
-        //     ->join('detallereq', 'requerimiento.IDREQ', '=', 'detallereq.FKREQ')
-        //     ->select('requerimiento.*', 'detallereq.*')
-        //     ->get();;
         try {
             $requerimientos = DB::table('requerimiento')
                 ->join('detallereq', 'requerimiento.IDREQ', '=', 'detallereq.FKREQ')

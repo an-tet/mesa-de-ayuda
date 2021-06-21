@@ -77,6 +77,7 @@
                         <li>
                             <a href="{{ route('home.index') }}">Inicio</a>
                         </li>
+                        @hasanyrole('administrador')
                         <li>
                             <a class="dropdown-trigger pl-0" href="#!" data-target="dropdown1">
                                 Areas
@@ -110,6 +111,7 @@
                                 <li><a href="{{ route('cargos.create') }}">Crear</a></li>
                             </ul>
                         </li>
+                        @endrole
                         <li>
                             <a class="dropdown-trigger pl-0" href="#!" data-target="dropdown4">
                                 Requerimientos
@@ -264,7 +266,6 @@
                 belowOrigin: false
             });
         });
-
     </script>
 </body>
 
