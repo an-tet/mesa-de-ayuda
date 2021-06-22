@@ -46,7 +46,6 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        // return dd($request);
         $request->validate([
             'IDEMPLEADO' => 'required|max:20|unique:empleado',
             'NOMBRE' => 'required|max:100',

@@ -16,6 +16,18 @@ use Illuminate\Support\Facades\Redirect;
 class RequerimientoController extends Controller
 {
     /**
+     * Instantiate a new PostController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['role:administrador|empleado|jefeDeArea'])->only(['index', 'create', 'store', 'show_resource', 'show']);
+        $this->middleware(['role:jefeDeArea'])->only(['edit', 'update']);
+    }
+
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -40,10 +52,13 @@ class RequerimientoController extends Controller
      */
     public function create()
     {
-        $areas = Area::all();
-        $empleados = Empleado::all();
-        $estados = Estado::all();
-        return view('requerimientos.RequerimientosCreateView', ['areas' => $areas, 'empleados' => $empleados, 'estados' => $estados]);
+        $areas = Area::select('area.*')->whereIn('IDAREA', [3, 4, 6])->get();
+        // $empleados = Empleado::select('empleado.*')
+        //     ->join('area', 'area.FKEMPLE', '=', 'empleado.IDEMPLEADO')
+        //     ->whereIn('area.IDAREA', [3, 4, 6])->get();
+        // $estados = Estado::all();
+        // return view('requerimientos.RequerimientosCreateView', ['areas' => $areas, 'empleados' => $empleados, 'estados' => $estados]);
+        return view('requerimientos.RequerimientosCreateView', compact($areas));
     }
 
     /**

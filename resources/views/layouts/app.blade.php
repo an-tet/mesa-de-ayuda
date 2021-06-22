@@ -177,6 +177,7 @@
                         Inicio
                     </a>
                 </li>
+                @hasanyrole('administrador')
                 <li>
                     <a class="dropdown-trigger" href="#!" data-target="dropdown1side">
                         Areas
@@ -210,6 +211,7 @@
                         <li><a href="{{ route('cargos.create') }}">Crear</a></li>
                     </ul>
                 </li>
+                @endrole
                 <li>
                     <a class="dropdown-trigger" href="#!" data-target="dropdown4side">
                         Requerimientos

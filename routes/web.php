@@ -23,14 +23,15 @@ use Illuminate\Support\Facades\Route;
 
 // Auth::routes(['verify' => true]);
 Auth::routes();
+// <---------------------------- Home routes --------------------------------------------------------->
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+// aboutus
+// contact
+
 // Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth'])->group(function () {
-    // <---------------------------- Home routes --------------------------------------------------------->
-    Route::get('/', [HomeController::class, 'index'])->name('home.index');
-    Route::get('/home', [HomeController::class, 'index'])->name('home.index');
     //about ud is in a principal page before loged
-
-
     Route::group(['middleware' => ['role:administrador']], function () {
         // <---------------------------- Areas routes --------------------------------------------------------->
         Route::get('/areas/show_resource', [AreaController::class, 'show_resource'])->name('areas.show_resource');

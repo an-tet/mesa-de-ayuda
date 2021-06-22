@@ -4,7 +4,7 @@
 @section('content')
     <div class="container">
         <div class="card hiverable mt-10 p-2 hoverable">
-            <h2 class="center">Requerimientos</h2>
+            <h2 class="center">Empleados</h2>
             <div class="row">
                 <div class="col s12">
                     <table class="list-group">
