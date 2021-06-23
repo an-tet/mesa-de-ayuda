@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('fkEMPLEADO', 20)->collation('utf8mb4_0900_ai_ci')->nullable();
+            $table->string('fkEMPLEADO', 20)->collation('utf8mb4_general_ci')->nullable();
             $table->foreign('fkEMPLEADO')->references('IDEMPLEADO')->on('empleado');
             $table->rememberToken();
             $table->timestamps();

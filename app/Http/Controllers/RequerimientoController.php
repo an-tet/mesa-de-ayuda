@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class RequerimientoController extends Controller
@@ -53,12 +54,7 @@ class RequerimientoController extends Controller
     public function create()
     {
         $areas = Area::select('area.*')->whereIn('IDAREA', [3, 4, 6])->get();
-        // $empleados = Empleado::select('empleado.*')
-        //     ->join('area', 'area.FKEMPLE', '=', 'empleado.IDEMPLEADO')
-        //     ->whereIn('area.IDAREA', [3, 4, 6])->get();
-        // $estados = Estado::all();
-        // return view('requerimientos.RequerimientosCreateView', ['areas' => $areas, 'empleados' => $empleados, 'estados' => $estados]);
-        return view('requerimientos.RequerimientosCreateView', compact($areas));
+        return view('requerimientos.RequerimientosCreateView', compact('areas'));
     }
 
     /**
@@ -73,9 +69,17 @@ class RequerimientoController extends Controller
             Requerimiento::create(['FKAREA' => $request->FKAREA]);
             $FECHAINI = Carbon::now()->format('Y-m-d');
             $IDREQ = Requerimiento::latest("IDREQ")->first();
-            DetalleReq::create(['FECHA' => $FECHAINI, 'OBSERVACION' => $request->OBSERVACION, 'FKREQ' => $IDREQ->IDREQ, 'FKESTADO' => $request->IDESTADO, 'FKEMPLE' => $request->FKEMPLE, 'FKEMPLEASIGNADO' => $request->FKEMPLEASIGNADO]);
+            DetalleReq::create(
+                [
+                    'FECHA' => $FECHAINI,
+                    'OBSERVACION' => $request->OBSERVACION,
+                    'FKREQ' => $IDREQ->IDREQ, 'FKESTADO' => 2,
+                    'FKEMPLE' =>  Auth::user()->fkEMPLEADO
+                ]
+            );
             return redirect()->route('requerimientos.index');
         } catch (Exception $error) {
+            // dd($error);
             return view('errors.error', compact('error'));
         }
     }
@@ -147,9 +151,7 @@ class RequerimientoController extends Controller
             'FKEMPLEASIGNADO' => 'sometimes|not_in:0',
         ]);
 
-        // return $request;
         $update = ['FKESTADO' => $request->FKESTADO];
-        // return DB::table('detallereq')->select('FKEMPLEASIGNADO')->where('FKREQ', '=', $FKREQ)->get()[0]->FKEMPLEASIGNADO == null;
         if (DB::table('detallereq')->select('FKEMPLEASIGNADO')->where('FKREQ', '=', $FKREQ)->get()[0]->FKEMPLEASIGNADO == null) {
             $update += ['FKEMPLEASIGNADO' => $request->FKEMPLEASIGNADO];
         }

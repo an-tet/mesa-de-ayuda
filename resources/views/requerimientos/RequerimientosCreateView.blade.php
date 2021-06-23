@@ -26,32 +26,34 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="input-field col s6">
+                        {{-- <div class="input-field col s6">
                             <select name="FKEMPLE">
                                 <option value="" disabled selected>Empleado que crea el requerimiento</option>
                                 @foreach ($empleados as $empleado)
                                     <option value={{ $empleado->IDEMPLEADO }}>{{ $empleado->NOMBRE }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="row">
-                        <div class="input-field col s6">
-                            <select name="FKEMPLEASIGNADO">
+                        {{-- <div class="input-field col s6">
+                            <select name="
+                            0.-
+                            ++">
                                 <option value="" disabled selected>Asigne el empleado</option>
                                 @foreach ($empleados as $empleado)
                                     <option value={{ $empleado->IDEMPLEADO }}>{{ $empleado->NOMBRE }}</option>
                                 @endforeach
                             </select>
-                        </div>
-                        <div class="input-field col s6">
+                        </div> --}}
+                        {{-- <div class="input-field col s6">
                             <select name="IDESTADO">
                                 <option value="" disabled selected>Asigne el estado</option>
                                 @foreach ($estados as $estado)
                                     <option value={{ $estado->IDESTADO }}>{{ $estado->NOMBRE }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="center">
                         <a href={{ route('requerimientos.index') }} class="btn waves-effect waves-light grey darken-2">
