@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\HomeController;
@@ -21,8 +22,8 @@ use Illuminate\Support\Facades\Route;
 
 // <---------------------------- Auth routes --------------------------------------------------------->
 
-// Auth::routes(['verify' => true]);
-Auth::routes();
+Auth::routes(['verify' => true,  'register' => false,]);
+// Auth::routes();
 // <---------------------------- Home routes --------------------------------------------------------->
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/home', [HomeController::class, 'index'])->name('home.index');
@@ -30,9 +31,11 @@ Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 // contact
 
 // Route::middleware(['auth', 'verified'])->group(function () {
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     //about ud is in a principal page before loged
     Route::group(['middleware' => ['role:administrador']], function () {
+        Route::get('/register/{id}', [RegisterController::class, 'showRegistrationForm'])->name('register.showRegistrationForm');
+        Route::post('/register', [RegisterController::class, 'register'])->name('register');
         // <---------------------------- Areas routes --------------------------------------------------------->
         Route::get('/areas/show_resource', [AreaController::class, 'show_resource'])->name('areas.show_resource');
         Route::get('/areas/show', [AreaController::class, 'show'])->name('areas.show');

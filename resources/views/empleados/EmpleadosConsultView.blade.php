@@ -39,6 +39,12 @@
                                                     <i class="material-icons">delete</i>
                                                 </button>
                                             </form>
+                                            @if (count($empleadosUsers->where('fkEMPLEADO', $empleado->IDEMPLEADO)) == 0)
+                                                <a href={{ route('register.showRegistrationForm', ['id' => $empleado->IDEMPLEADO]) }}
+                                                    class="waves-effect waves-light btn-small grey darken-2 ml-2">
+                                                    <i class="material-icons">person_add</i>
+                                                </a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

@@ -22,7 +22,15 @@ class EmpleadoController extends Controller
     public function index()
     {
         $empleados = Empleado::all();
-        return view('empleados.EmpleadosConsultView', compact('empleados'));
+        $empleadosUsers = DB::table('empleado')
+            ->join('users', 'users.fkEMPLEADO', '=', 'empleado.IDEMPLEADO')
+            ->select('users.fkEMPLEADO')
+            ->get();
+        // return is_array($empleadosUsers = DB::table('empleado')
+        // ->join('users', 'users.fkEMPLEADO', '=', 'empleado.IDEMPLEADO')
+        // ->select('users.id', 'users.fkEMPLEADO')
+        // ->get()) ?  'true' : 'false';
+        return view('empleados.EmpleadosConsultView', ['empleados' => $empleados,  'empleadosUsers' => $empleadosUsers]);
     }
 
     /**

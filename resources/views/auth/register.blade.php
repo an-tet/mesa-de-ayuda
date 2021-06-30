@@ -11,10 +11,13 @@
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
+                            <input type="hidden" name="idEmple" value="{{ $empleado->IDEMPLEADO }}">
+
                             <div class="row">
                                 <div class="input-field col s12">
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                        name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                        name="name" value="{{ $empleado->NOMBRE }}" required autocomplete="name" autofocus
+                                        readonly>
                                     <label for="name">{{ __('Name') }}</label>
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -27,7 +30,8 @@
                             <div class="row">
                                 <div class="input-field col s12">
                                     <input d="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                        name="email" value="{{ old('email') }}" required autocomplete="email">
+                                        name="email" value="{{ $empleado->EMAIL }}" required autocomplete="email"
+                                        readonly>
                                     <label for="email">{{ __('E-Mail Address') }}</label>
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">

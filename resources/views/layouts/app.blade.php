@@ -66,11 +66,11 @@
                             </li>
                         @endif
 
-                        @if (Route::has('register'))
+                        {{-- @if (Route::has('register'))
                             <li>
                                 <a href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
-                        @endif
+                        @endif --}}
                     @endguest
                     {{-- Navbar --}}
                     @auth
@@ -237,11 +237,11 @@
                     </li>
                 @endif
 
-                @if (Route::has('register'))
+                {{-- @if (Route::has('register'))
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </li>
-                @endif
+                @endif --}}
             @endguest
         </ul>
         {{-- End sidebar --}}
@@ -268,6 +268,7 @@
                 belowOrigin: false
             });
         });
+
     </script>
 </body>
 
