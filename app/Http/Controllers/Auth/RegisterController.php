@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Empleado;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -42,6 +43,18 @@ class RegisterController extends Controller
         // $this->middleware(['auth', 'role:administrador']);
     }
 
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showRegistrationForm($id)
+    {
+        $empleado = Empleado::where('IDEMPLEADO', '=', $id)->first();
+        return view('auth.register', compact('empleado'));
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -65,11 +78,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        return User::all();
+        User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'fkEMPLEADO' => $data['idEmple'],
             'password' => Hash::make($data['password']),
         ]);
+        // User::where()->assignRole('administrador');
     }
 }
