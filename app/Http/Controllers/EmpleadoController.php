@@ -59,7 +59,11 @@ class EmpleadoController extends Controller
             'NOMBRE' => 'required|max:100',
             'FOTO' => 'sometimes|mimes:jpg,png',
             'HOJAVIDA' => 'sometimes|mimes:pdf',
+<<<<<<< HEAD
             'TELEFONO' => 'required|numeric|digits_between:7,10',
+=======
+            'TELEFONO' => 'required|numeric|digits:10',
+>>>>>>> 001a6daaeeffe68f4ce8fb027f0863315ce9d654
             'EMAIL' => 'required|email|max:100|unique:empleado',
             'DIRECCION' => 'required|max:100',
             'X' => 'sometimes|numeric|min:-180|max:180',

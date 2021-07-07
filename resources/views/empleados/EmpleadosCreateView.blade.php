@@ -12,7 +12,7 @@
                     @csrf
                     <div class="row">
                         <div class="input-field col s4">
-                            <input type="text" class="validate" name="IDEMPLEADO" required>
+                            <input type="number" class="validate" name="IDEMPLEADO" required>
                             <label for="IDEMPLEADO">Código empleado</label>
                             @error('IDEMPLEADO')
                                 <small class="red-text">{{ $message }}</small>
@@ -65,7 +65,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <input type="number" class="validate" name="TELEFONO" required>
+                            <input type="number" class="validate" name="TELEFONO" maxlength="10" required>
                             <label for="TELEFONO">Teléfono</label>
                             @error('TELEFONO')
                                 <small class="red-text">{{ $message }}</small>
