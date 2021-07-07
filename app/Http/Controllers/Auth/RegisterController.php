@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Spatie\Permission\Traits\HasRoles;
 
 class RegisterController extends Controller
 {
@@ -28,7 +29,7 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
-
+    use HasRoles;
     /**
      * Where to redirect users after registration.
      *
@@ -93,6 +94,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'rol' => ['required', 'not_in:0'],
         ]);
     }
 
@@ -104,12 +106,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'fkEMPLEADO' => $data['idEmple'],
             'password' => Hash::make($data['password']),
         ]);
-        // User::where()->assignRole('administrador');
+        $user->assignRole($data['rol']);
     }
 }

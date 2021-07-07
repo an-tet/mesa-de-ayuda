@@ -4,7 +4,7 @@
 @section('content')
     <div class="container">
         <div class="card hiverable mt-8 p-3 hoverable">
-            <h2 class="center-align">Crear requerimiento</h2>
+            <h2 class="center-align">Editar requerimiento</h2>
 
             <div class="row">
                 <form action={{ route('requerimientos.update', $requerimiento->IDREQ) }} method="POST" class="col s12">
@@ -42,7 +42,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <select name="FKEMPLEASIGNADO" @if ($requerimiento->FKEMPLEASIGNADO != null) disabled @endif>
+                            <select name="FKEMPLEASIGNADO" @hasanyrole('empleado') disabled @endhasanyrole @if ($requerimiento->FKEMPLEASIGNADO != null) disabled @endif>
                                 <option value="" disabled selected>Asigne el empleado</option>
                                 @foreach ($empleados as $empleado)
                                     <option value={{ $empleado->IDEMPLEADO }} @if ($requerimiento->FKEMPLEASIGNADO == $empleado->IDEMPLEADO) selected='selected' @endif>{{ $empleado->NOMBRE }}
@@ -50,14 +50,19 @@
                                 @endforeach
                             </select>
                         </div>
+                        {{-- {{ $requerimiento->FKEMPLEASIGNADO }} --}}
+
                         <div class="input-field col s6">
-                            <select name="FKESTADO" @if ($requerimiento->FKESTADO == 5 || $requerimiento->FKESTADO == 4) disabled @endif>
+                            <select name="FKESTADO" @hasanyrole('empleado') @if (Auth::user()->fkEMPLEADO != $requerimiento->FKEMPLEASIGNADO || $requerimiento->FKEMPLEASIGNADO == null) disabled @endif @endhasanyrole @if ($requerimiento->FKESTADO == 5 || $requerimiento->FKESTADO == 4) disabled
+                                @endif>
                                 <option value="" disabled selected>Asigne el estado</option>
                                 @foreach ($estados as $estado)
-                                    <option value={{ $estado->IDESTADO }} @if ($requerimiento->FKESTADO == $estado->IDESTADO) selected='selected' @endif @if ($estado->IDESTADO == 1)disabled
+                                    <option value={{ $estado->IDESTADO }} @hasanyrole('empleado') @if ($estado->IDESTADO == 5) disabled @endif
+                                        @endhasanyrole @if ($requerimiento->FKESTADO == $estado->IDESTADO) selected='selected'
+                                        @endif @if ($estado->IDESTADO == 1)disabled
 
-                                @endif>{{ $estado->NOMBRE }}
-                                </option>
+                                        @endif>{{ $estado->NOMBRE }}
+                                    </option>
                                 @endforeach
                             </select>
                             @error('FKESTADO')

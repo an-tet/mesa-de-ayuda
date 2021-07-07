@@ -68,6 +68,23 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <select name="rol">
+                                        <option value="" disabled selected>Seleccione su rol</option>
+                                        <option value="administrador">Administrador</option>
+                                        <option value="jefeDeArea">Jefe</option>
+                                        <option value="empleado">Empleado</option>
+                                    </select>
+                                    <label>Rol</label>
+                                    @error('rol')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <div class=" row">
                                 <div class="col s12 center">
                                     <button type="submit" class="btn blue-grey">

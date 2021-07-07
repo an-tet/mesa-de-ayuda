@@ -23,8 +23,8 @@ class RequerimientoController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['role:administrador|empleado|jefeDeArea'])->only(['index', 'create', 'store', 'show_resource', 'show']);
-        $this->middleware(['role:jefeDeArea'])->only(['edit', 'update']);
+        // $this->middleware(['role:administrador|empleado|jefeDeArea'])->only(['index', 'create', 'store', 'show_resource', 'show']);
+        // $this->middleware(['role:jefeDeArea|administrador'])->only(['edit', 'update']);
     }
 
 
@@ -110,9 +110,9 @@ class RequerimientoController extends Controller
                 ->join('detallereq', 'requerimiento.IDREQ', '=', 'detallereq.FKREQ')
                 ->select('requerimiento.*', 'detallereq.*')
                 ->where('IDREQ', '=', $request->IDREQ)
-                ->get();
-            // return $requerimiento;
-            return view('requerimientos.RequerimientosShowView', ['requerimiento' => $requerimiento[0]]);
+                ->first();
+
+            return view('requerimientos.RequerimientosShowView', ['requerimiento' => $requerimiento]);
         } catch (Exception $error) {
             return view('errors.error', compact('error'));
         }
@@ -130,11 +130,11 @@ class RequerimientoController extends Controller
             ->join('detallereq', 'requerimiento.IDREQ', '=', 'detallereq.FKREQ')
             ->select('requerimiento.*', 'detallereq.*')
             ->where('IDREQ', '=', $IDREQ)
-            ->get();
+            ->first();
         $areas = Area::all();
         $estados = Estado::all();
         $empleados = Empleado::all();
-        return view('requerimientos.RequerimientosEditView', ['requerimiento' => $requerimiento[0], 'areas' => $areas, 'empleados' => $empleados, 'estados' => $estados]);
+        return view('requerimientos.RequerimientosEditView', ['requerimiento' => $requerimiento, 'areas' => $areas, 'empleados' => $empleados, 'estados' => $estados]);
     }
 
     /**

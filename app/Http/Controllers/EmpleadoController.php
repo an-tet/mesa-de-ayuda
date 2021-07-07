@@ -55,15 +55,15 @@ class EmpleadoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'IDEMPLEADO' => 'required|max:20|unique:empleado',
+            'IDEMPLEADO' => 'required|numeric|max:20|unique:empleado',
             'NOMBRE' => 'required|max:100',
             'FOTO' => 'sometimes|mimes:jpg,png',
             'HOJAVIDA' => 'sometimes|mimes:pdf',
-            'TELEFONO' => 'required|max:7|min:7',
+            'TELEFONO' => 'required|numeric|digits_between:7,10',
             'EMAIL' => 'required|email|max:100|unique:empleado',
             'DIRECCION' => 'required|max:100',
-            'X' => 'sometimes|min:-180|max:180',
-            'Y' => 'sometimes|min:-90|max:90',
+            'X' => 'sometimes|numeric|min:-180|max:180',
+            'Y' => 'sometimes|numeric|min:-90|max:90',
             'FECHAINI' => 'required|date_format:Y-m-d',
             'fkEMPLE_JEFE' => '',
             'fkAREA' => 'required|not_in:0',
